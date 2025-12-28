@@ -18,7 +18,7 @@ export const allProjects: Project[] = [
     description:
       'Backend con Spring Boot, APIs REST y pipelines CI/CD usando Jenkins y Docker.',
     tags: ['Java', 'Spring Boot', 'Jenkins', 'CI/CD', 'Docker'],
-    github: 'https://github.com/JosueGarciaAbata/marketplace_link_jenkins',
+    github: 'https://github.com/JosueGarciaAbata/martketplace_link_jenkins',
     image: '/assets/projects/marketplace.png',
   },
   {
