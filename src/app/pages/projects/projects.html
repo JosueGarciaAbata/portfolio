@@ -1,0 +1,36 @@
+<main class="container archive">
+  <h1 class="archive__title">Todos los Proyectos</h1>
+
+  <div class="table">
+    <div class="row row--head">
+      <div>Año</div>
+      <div>Proyecto</div>
+      <div>Construido con</div>
+      <div>Enlace</div>
+    </div>
+
+    @for (project of projects; track project.title) {
+    <div class="row">
+      <div class="muted">{{ project.year }}</div>
+      <div class="projectname">
+        {{ project.title }}
+        @if (project.subtitle) {
+        <div class="muted small">{{ project.subtitle }}</div>
+        }
+      </div>
+      <div class="built">
+        @for (tag of project.tags; track $index) {
+        <span class="pill">{{ tag }}</span>
+        }
+      </div>
+      <div>
+        @if (project.github) {
+        <a class="link" [href]="project.github" target="_blank" rel="noreferrer"> github ↗ </a>
+        } @else if (project.link) {
+        <a class="link" [href]="project.link" target="_blank" rel="noreferrer"> enlace ↗ </a>
+        }
+      </div>
+    </div>
+    }
+  </div>
+</main>

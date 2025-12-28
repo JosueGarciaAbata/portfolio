@@ -1,0 +1,25 @@
+<article class="card">
+  @if (project.image) {
+  <img class="card__image" [src]="project.image" [alt]="project.title" loading="lazy" />
+  }
+
+  <div class="card__top">
+    <div class="folder" aria-hidden="true"></div>
+    <div class="card__icons">
+      @if (project.github) {
+      <a class="iconlink" [href]="project.github" target="_blank" rel="noreferrer">↗</a>
+      } @if (project.link) {
+      <a class="iconlink" [href]="project.link" target="_blank" rel="noreferrer">↗</a>
+      }
+    </div>
+  </div>
+
+  <h4 class="card__title">{{ project.title }}</h4>
+  <p class="card__text">{{ project.description }}</p>
+
+  <div class="tags">
+    @for (tag of project.tags; track $index) {
+    <span class="tag">{{ tag }}</span>
+    }
+  </div>
+</article>

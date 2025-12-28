@@ -1,0 +1,189 @@
+<main class="container">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__layout">
+      <div class="hero__text">
+        <p class="hero__intro">Hola, mi nombre es</p>
+        <h1 class="hero__name">Josué García.</h1>
+        <h2 class="hero__tagline">Enfocado en el desarrollo de sistemas backend</h2>
+
+        <p class="hero__desc">
+          Estudiante de Ingeniería de Software enfocado en backend. Desarrollo APIs REST,
+          microservicios y servicios listos para la nube usando Spring Boot, Spring Cloud y bases de
+          datos SQL.
+        </p>
+
+        <div class="hero__cta">
+          <a class="btn" routerLink="/projects">Ver mis proyectos</a>
+        </div>
+
+        <div class="hero__chips">
+          <span class="chip">Java</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">Spring Cloud</span>
+          <span class="chip">Docker</span>
+          <span class="chip">Azure</span>
+          <span class="chip">SQL</span>
+        </div>
+      </div>
+
+      <div class="hero__media">
+        <img class="hero__photo" src="/assets/imgs/profile.jpg" alt="Foto de Josué García" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <h3 class="section__title">Sobre mí</h3>
+    <div class="about__text">
+      <p class="muted">
+        Me enfoco en el desarrollo backend con Java y Spring Boot. Disfruto diseñar APIs limpias,
+        trabajar con bases de datos relacionales y construir microservicios. Estudiante de
+        Ingeniería de Software enfocado en backend. Desarrollo APIs REST, microservicios y servicios
+        listos para la nube usando Spring Boot, Spring Cloud y bases de datos SQL.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section">
+    <h3 class="section__title">Proyectos destacados</h3>
+
+    <div class="projects__top">
+      <p class="muted">Algunos proyectos representativos</p>
+      <a class="btn btn--ghost btn--small" routerLink="/projects"> Ver todos → </a>
+    </div>
+
+    <div class="cards">
+      @for (project of projects; track $index) {
+      <app-project-card [project]="project"></app-project-card>
+      }
+
+      <!-- CTA card to ver más proyectos -->
+      <app-project-card [project]="moreCard"></app-project-card>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <h3 class="section__title">Habilidades técnicas</h3>
+
+    <div class="skills-grid">
+      <!-- Lenguajes -->
+      <div class="skill-card">
+        <h4><i class="devicon-code-slash-line"></i> Lenguajes</h4>
+        <div class="chips">
+          <span class="chip">Java</span>
+          <span class="chip">PHP</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">TypeScript</span>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="skill-card">
+        <h4><i class="devicon-spring-plain"></i> Backend</h4>
+        <div class="chips">
+          <span class="chip">Spring Boot</span>
+          <span class="chip">Spring Web</span>
+          <span class="chip">Spring Data JPA</span>
+          <span class="chip">Spring Cloud</span>
+          <span class="chip">ASP.NET Core</span>
+        </div>
+      </div>
+
+      <!-- Arquitectura -->
+      <div class="skill-card">
+        <h4>🏗 Arquitectura</h4>
+        <div class="chips">
+          <span class="chip">Microservicios</span>
+          <span class="chip">Clean Architecture</span>
+          <span class="chip">SOLID</span>
+          <span class="chip">Separación de responsabilidades</span>
+        </div>
+      </div>
+
+      <!-- Bases de datos -->
+      <div class="skill-card">
+        <h4><i class="devicon-postgresql-plain"></i> Bases de datos</h4>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Oracle</span>
+        </div>
+      </div>
+
+      <!-- DevOps -->
+      <div class="skill-card">
+        <h4><i class="devicon-docker-plain"></i> DevOps & Cloud</h4>
+        <div class="chips">
+          <span class="chip">Docker</span>
+          <span class="chip">Jenkins</span>
+          <span class="chip">Azure</span>
+          <span class="chip">Kubernetes (básico)</span>
+        </div>
+      </div>
+
+      <!-- Frontend -->
+      <div class="skill-card">
+        <h4><i class="devicon-angularjs-plain"></i> Frontend</h4>
+        <div class="chips">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS</span>
+          <span class="chip">React</span>
+          <span class="chip">Angular</span>
+          <span class="chip">Tailwind</span>
+        </div>
+      </div>
+
+      <!-- Herramientas -->
+      <div class="skill-card">
+        <h4><i class="devicon-git-plain"></i> Herramientas</h4>
+        <div class="chips">
+          <span class="chip">Git</span>
+          <span class="chip">GitHub</span>
+          <span class="chip">GitLab</span>
+        </div>
+      </div>
+
+      <!-- SO -->
+      <div class="skill-card">
+        <h4>🖥 Sistemas operativos</h4>
+        <div class="chips">
+          <span class="chip">Linux</span>
+          <span class="chip">Windows</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section id="languages" class="section">
+    <h3 class="section__title">Idiomas</h3>
+    <ul>
+      <li><strong>Español:</strong> Nativo</li>
+      <li><strong>Inglés:</strong> Intermedio</li>
+    </ul>
+  </section>
+
+  <!-- CONTACT (MISMA PÁGINA) -->
+  <section id="contact" class="section">
+    <h3 class="section__title">Contacto</h3>
+
+    <p class="muted">
+      ¿Quieres contactarme? El correo es la mejor opción. También puedes revisar mi GitHub y
+      descargar mi CV.
+    </p>
+
+    <div class="contact">
+      <a class="btn" href="mailto:josuegarcab2@hotmail.com"> Envíame un correo </a>
+
+      <a class="btn btn--ghost" href="https://github.com/JosueGarciaAbata" target="_blank">
+        GitHub
+      </a>
+
+      <a class="btn btn--ghost" href="assets/cvs/CV-ES.pdf" target="_blank"> Descargar CV </a>
+    </div>
+  </section>
+</main>
