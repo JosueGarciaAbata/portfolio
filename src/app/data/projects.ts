@@ -50,7 +50,7 @@ export const allProjects: Project[] = [
   },
   {
     year: 2025,
-    title: 'Arquitectura Limpia',
+    title: 'Implementación de Clean Architecture',
     subtitle: 'Patrones de arquitectura, estructura en capas',
     description: 'Implementación de principios de arquitectura limpia.',
     tags: ['Java', 'Spring Boot', 'Arquitectura Limpia'],
@@ -58,7 +58,7 @@ export const allProjects: Project[] = [
   },
   {
     year: 2025,
-    title: 'Dominio Común',
+    title: 'Modelo de Dominio Compartido para Microservicios',
     subtitle: 'Modelos de dominio compartidos / componentes reutilizables',
     description: 'Librería compartida de modelos de dominio.',
     tags: ['Java', 'Dominio', 'Librería Compartida'],
@@ -66,7 +66,7 @@ export const allProjects: Project[] = [
   },
   {
     year: 2025,
-    title: 'Proyecto Ágil',
+    title: 'Proyecto Web Académico con Enfoque Ágil',
     subtitle: 'Proyecto web académico (trabajo iterativo/ágil)',
     description: 'Proyecto académico con enfoque ágil.',
     tags: ['PHP', 'JavaScript', 'HTML/CSS'],
@@ -74,7 +74,7 @@ export const allProjects: Project[] = [
   },
   {
     year: 2024,
-    title: 'Proyecto MDS',
+    title: 'Proyecto Web Full Stack (PHP, JS, SQL)',
     subtitle: 'Proyecto web + script SQL incluido',
     description: 'Proyecto web con SQL incluido.',
     tags: ['JavaScript', 'PHP', 'SQL', 'HTML/CSS'],
