@@ -32,7 +32,7 @@ export const footerData = {
       title: 'Links',
       links: [
         { text: 'GitHub', href: 'https://github.com/JosueGarciaAbata' },
-        { text: 'LinkedIn', href: 'https://github.com/JosueGarciaAbata' },
+        { text: 'LinkedIn', href: 'https://www.linkedin.com/in/josue-joel-garcia-abata-07ab94297/' },
         { text: 'YouTube', href: 'https://www.youtube.com/@user-jsg204' },
       ],
     },
@@ -40,7 +40,7 @@ export const footerData = {
   secondaryLinks: [],
   socialLinks: [
     { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/JosueGarciaAbata' },
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://github.com/JosueGarciaAbata' },
+    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/josue-joel-garcia-abata-07ab94297/' },
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@user-jsg204' },
     { ariaLabel: 'Email', icon: 'tabler:mail', href: 'mailto:josuegarcab2@hotmail.com' },
   ],

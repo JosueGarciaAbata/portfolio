@@ -1,6 +1,6 @@
 site:
   name: Josue Garcia
-  site: 'https://astrowind.vercel.app'
+  site: 'https://josuegarcab.vercel.app'
   base: '/'
   trailingSlash: false
 
