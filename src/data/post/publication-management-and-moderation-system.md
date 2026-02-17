@@ -1,5 +1,5 @@
 ---
-publishDate: 2026-02-16T10:00:00Z
+publishDate: 2026-02-17T10:00:00Z
 title: Publication Management and Moderation System
 excerpt: Full-stack system with Spring Boot, REST APIs, and CI/CD pipelines using Jenkins and Docker.
 image: ~/assets/images/projects/publication.png

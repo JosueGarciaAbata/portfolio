@@ -1,5 +1,5 @@
 ---
-publishDate: 2026-02-15T10:00:00Z
+publishDate: 2026-02-17T10:00:00Z
 title: Fuel Management System
 excerpt: Distributed system focused on detecting issues and edge cases in fuel consumption, such as overuse or inconsistencies.
 image: ~/assets/images/projects/fuel.png
