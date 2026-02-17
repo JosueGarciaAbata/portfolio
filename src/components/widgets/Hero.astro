@@ -13,63 +13,109 @@ const {
   actions = await Astro.slots.render('actions'),
   image = await Astro.slots.render('image'),
 
+  sideImage = await Astro.slots.render('sideImage'),
+
   id,
   bg = await Astro.slots.render('bg'),
 } = Astro.props;
+
+const hasSideImage = Boolean(sideImage);
+const sideImageProps: Record<string, any> =
+  typeof sideImage === 'object' && sideImage ? (sideImage as Record<string, any>) : {};
 ---
 
-<section class="relative md:-mt-[76px] not-prose" {...id ? { id } : {}}>
+<section class:list={['relative not-prose', { 'md:-mt-[76px]': !hasSideImage }]} {...id ? { id } : {}}>
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
     <slot name="bg">
       {bg ? <Fragment set:html={bg} /> : null}
     </slot>
   </div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="pt-0 md:pt-[76px] pointer-events-none"></div>
+    <div class:list={['pt-0 pointer-events-none', { 'md:pt-[76px]': !hasSideImage }]}></div>
     <div class="py-12 md:py-20">
-      <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
-        {
-          tagline && (
-            <p
-              class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-              set:html={tagline}
-            />
-          )
-        }
-        {
-          title && (
-            <h1
-              class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-              set:html={title}
-            />
-          )
-        }
-        <div class="max-w-3xl mx-auto">
+      <div class:list={['pb-10 md:pb-16 mx-auto', { 'max-w-6xl': hasSideImage, 'max-w-5xl': !hasSideImage }]}>
+        <div
+          class:list={[
+            'grid gap-8 md:gap-6 lg:gap-10 items-center',
+            {
+              'md:grid-cols-12': hasSideImage,
+            },
+          ]}
+        >
+          <div
+            class:list={[{ 'md:col-span-8 text-center md:text-left': hasSideImage }, { 'text-center': !hasSideImage }]}
+          >
+            {
+              tagline && (
+                <p
+                  class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                  set:html={tagline}
+                />
+              )
+            }
+            {
+              title && (
+                <h1
+                  class="text-5xl md:text-6xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200 intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                  set:html={title}
+                />
+              )
+            }
+            <div class:list={[hasSideImage ? 'max-w-none' : 'max-w-3xl mx-auto', { 'md:mx-0': hasSideImage }]}>
+              {
+                subtitle && (
+                  <p
+                    class="text-xl text-muted mb-6 dark:text-slate-300 intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
+                    set:html={subtitle}
+                  />
+                )
+              }
+              {
+                actions && (
+                  <div
+                    class:list={[
+                      'max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row gap-4 intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
+                      {
+                        'sm:justify-center': !hasSideImage,
+                        'sm:justify-center md:justify-start md:m-0': hasSideImage,
+                      },
+                    ]}
+                  >
+                    {Array.isArray(actions) ? (
+                      actions.map((action) => (
+                        <div class="flex w-full sm:w-auto">
+                          <Button {...(action || {})} class="w-full sm:mb-0" />
+                        </div>
+                      ))
+                    ) : (
+                      <Fragment set:html={actions} />
+                    )}
+                  </div>
+                )
+              }
+            </div>
+            {content && <Fragment set:html={content} />}
+          </div>
           {
-            subtitle && (
-              <p
-                class="text-xl text-muted mb-6 dark:text-slate-300 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-                set:html={subtitle}
-              />
-            )
-          }
-          {
-            actions && (
-              <div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
-                {Array.isArray(actions) ? (
-                  actions.map((action) => (
-                    <div class="flex w-full sm:w-auto">
-                      <Button {...(action || {})} class="w-full sm:mb-0" />
-                    </div>
-                  ))
+            hasSideImage && (
+              <div class="md:col-span-4 flex justify-center md:justify-center lg:justify-end">
+                {typeof sideImage === 'string' ? (
+                  <Fragment set:html={sideImage} />
                 ) : (
-                  <Fragment set:html={actions} />
+                  <Image
+                    class="rounded-full w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-cover ring-4 ring-gray-200 dark:ring-slate-700"
+                    widths={[224, 256, 320, 384, 400]}
+                    sizes="(max-width: 639px) 224px, (max-width: 767px) 256px, (max-width: 1023px) 320px, 400px"
+                    loading="eager"
+                    width={400}
+                    height={400}
+                    {...sideImageProps}
+                  />
                 )}
               </div>
             )
           }
         </div>
-        {content && <Fragment set:html={content} />}
       </div>
       <div
         class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"

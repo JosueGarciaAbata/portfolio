@@ -1,5 +1,5 @@
 site:
-  name: AstroWind
+  name: Josue Garcia
   site: 'https://astrowind.vercel.app'
   base: '/'
   trailingSlash: false
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Josue Garcia
+    template: '%s — Josue Garcia'
+  description: "\U0001F680 Suitable for Startups, Small Business, SaaS Websites, Professional Portfolios, Marketing Websites, Landing Pages & Project Showcases."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Josue Garcia
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -38,13 +38,13 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: '/projects/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
       robots:
         index: true
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: 'projects' # Projects list main path
       robots:
         index: true
 

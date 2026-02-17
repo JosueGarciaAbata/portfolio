@@ -1,8 +1,8 @@
 ---
 import { APP_BLOG } from 'astrowind:config';
 
-import { getRelatedPosts } from '~/utils/blog';
-import BlogHighlightedPosts from '../widgets/BlogHighlightedPosts.astro';
+import { getRelatedPosts } from '~/utils/projects';
+import ProjectsHighlightedPosts from '../widgets/ProjectsHighlightedPosts.astro';
 import type { Post } from '~/types';
 import { getBlogPermalink } from '~/utils/permalinks';
 
@@ -17,13 +17,13 @@ const relatedPosts = post.tags ? await getRelatedPosts(post, 4) : [];
 
 {
   APP_BLOG.isRelatedPostsEnabled ? (
-    <BlogHighlightedPosts
+    <ProjectsHighlightedPosts
       classes={{
         container:
           'pt-0 lg:pt-0 md:pt-0 intersect-once intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade',
       }}
-      title="Related Posts"
-      linkText="View All Posts"
+      title="Related Projects"
+      linkText="View All Projects"
       linkUrl={getBlogPermalink()}
       postIds={relatedPosts.map((post) => post.id)}
     />
