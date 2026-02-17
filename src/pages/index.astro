@@ -1,0 +1,143 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Note from '~/components/widgets/Note.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+
+const metadata = {
+  title: 'Backend Developer Portfolio — Josue',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Download CV',
+        href: '#',
+        target: '_blank',
+        icon: 'tabler:download',
+      },
+      { text: 'View more projects', href: '#projects' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Portfolio Hero Image' }}
+  >
+    <Fragment slot="title">
+      Backend Developer <span class="hidden xl:inline">specialized in</span>
+      <span class="text-accent dark:text-white"> scalable systems</span> & microservices
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="hidden sm:inline">
+        <span class="font-semibold">Computer Engineering student</span> specializing in backend development.</span
+      >
+      <span class="block mb-1 sm:hidden font-bold text-blue-600">Backend Developer</span>
+      I build scalable REST APIs, microservices, and distributed systems using Java, Spring Boot, and NestJS. Strong expertise
+      in cloud deployment, CI/CD pipelines, and system architecture.
+    </Fragment>
+  </Hero>
+
+  <!-- Note Widget ******************* -->
+
+  <Note title='"What I cannot create, I do not understand." – Richard Feynman' />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Tech Stack & Tools"
+    subtitle="Technologies and frameworks I work with to build robust backend systems"
+    tagline="Technologies"
+    items={[
+      {
+        title: 'Java 8+',
+        description: 'Core programming language for building enterprise-level applications and microservices.',
+        icon: 'devicon:java',
+      },
+      {
+        title: 'Spring Boot',
+        description:
+          'Framework for creating production-ready applications with embedded servers and auto-configuration.',
+        icon: 'devicon:spring',
+      },
+      {
+        title: 'Spring Cloud',
+        description: 'Building distributed systems and microservices with service discovery and circuit breakers.',
+        icon: 'devicon:spring',
+      },
+      {
+        title: 'Spring Security & JWT',
+        description: 'Implementing authentication, authorization, and secure token-based access control.',
+        icon: 'flat-color-icons:privacy',
+      },
+      {
+        title: 'REST APIs',
+        description: 'Designing and developing RESTful web services following industry best practices.',
+        icon: 'flat-color-icons:data-configuration',
+      },
+      {
+        title: 'PostgreSQL & MySQL',
+        description: 'Relational database design, optimization, and management for scalable applications.',
+        icon: 'devicon:postgresql',
+      },
+      {
+        title: 'Oracle & Redis',
+        description: 'Enterprise database solutions and in-memory caching for high-performance systems.',
+        icon: 'devicon:oracle',
+      },
+      {
+        title: 'Docker',
+        description: 'Containerization of applications for consistent deployment across different environments.',
+        icon: 'devicon:docker',
+      },
+      {
+        title: 'Jenkins & GitHub Actions',
+        description: 'CI/CD automation, testing pipelines, and continuous integration workflows.',
+        icon: 'flat-color-icons:workflow',
+      },
+      {
+        title: 'AWS & Azure',
+        description: 'Cloud infrastructure, serverless computing, and managed services deployment.',
+        icon: 'flat-color-icons:linux',
+      },
+      {
+        title: 'JUnit 5 & Mockito',
+        description: 'Unit testing, integration testing, and test-driven development practices.',
+        icon: 'flat-color-icons:approval',
+      },
+      {
+        title: 'JaCoCo & SonarQube',
+        description: 'Code coverage analysis and continuous inspection of code quality and security.',
+        icon: 'flat-color-icons:inspection',
+      },
+      {
+        title: 'Angular & React',
+        description: 'Frontend frameworks for building dynamic and responsive user interfaces.',
+        icon: 'devicon:angular',
+      },
+      {
+        title: 'TypeScript & JavaScript',
+        description: 'Modern web development with type-safe code and enhanced developer experience.',
+        icon: 'devicon:typescript',
+      },
+      {
+        title: 'NestJS',
+        description: 'Progressive Node.js framework for building efficient and scalable server-side applications.',
+        icon: 'devicon:nestjs',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+
+  <!-- HighlightedPosts Widget ******* -->
+
+  <BlogLatestPosts id="projects" title="Explore my projects" />
+</Layout>
