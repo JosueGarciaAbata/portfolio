@@ -11,7 +11,7 @@ metadata:
   title:
     default: Josue Garcia
     template: '%s — Josue Garcia'
-  description: "\U0001F680 Suitable for Startups, Small Business, SaaS Websites, Professional Portfolios, Marketing Websites, Landing Pages & Project Showcases."
+  description: 'Full Stack Developer building web applications with Angular/React and Java + Spring Boot. REST APIs, microservices, Docker, CI/CD, relational databases, and cloud on AWS/Azure.'
   robots:
     index: true
     follow: true

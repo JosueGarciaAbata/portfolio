@@ -6,7 +6,7 @@ import Features2 from '~/components/widgets/Features2.astro';
 import ProjectsLatestPosts from '~/components/widgets/ProjectsLatestPosts.astro';
 
 const metadata = {
-  title: 'Backend Developer Portfolio — Josue',
+  title: 'Full Stack Developer Portfolio — Josue Garcia',
   ignoreTitleTemplate: true,
 };
 ---
@@ -29,17 +29,20 @@ const metadata = {
       sideImage={{ src: '~/assets/images/profile.jpg', alt: 'Josue Garcia profile photo' }}
     >
       <Fragment slot="title">
-        Backend Developer <span class="hidden xl:inline">specialized in</span>
-        <span class="text-accent dark:text-white"> scalable systems</span> & microservices
+        Full Stack Developer <span class="hidden xl:inline">building</span>
+        <span class="text-accent dark:text-white"> scalable web apps</span> & microservices
       </Fragment>
 
       <Fragment slot="subtitle">
         <span class="hidden sm:inline">
-          <span class="font-semibold">Computer Engineering student</span> specializing in backend development.</span
+          <span class="font-semibold">Computer Engineering student</span> focused on end‑to‑end web development.</span
         >
-        <span class="block mb-1 sm:hidden font-bold text-blue-600">Backend Developer</span>
-        I build scalable REST APIs, microservices, and distributed systems using Java, Spring Boot, and NestJS. Strong expertise
-        in cloud deployment, CI/CD pipelines, and system architecture.
+        <span class="block mb-1 sm:hidden font-bold text-blue-600">Full Stack Developer</span>
+        I build complete web applications with <span class="font-semibold">Angular</span> and <span
+          class="font-semibold">React</span
+        > on the frontend and
+        <span class="font-semibold">Java + Spring Boot</span> on the backend. Experienced in REST APIs, microservices, Docker,
+        CI/CD, relational databases, and cloud deployments on AWS and Azure.
       </Fragment>
 
       <Fragment slot="content">
@@ -59,7 +62,7 @@ const metadata = {
   <div id="technologies" class="scroll-mt-[96px] md:scroll-mt-[88px]">
     <Features2
       title="Tech Stack & Tools"
-      subtitle="Technologies and frameworks I work with to build robust backend systems"
+      subtitle="Technologies I use to build and ship complete applications (frontend, backend, and cloud)"
       tagline="Technologies"
       items={[
         {
@@ -124,29 +127,19 @@ const metadata = {
           icon: 'flat-color-icons:approval',
         },
         {
-          title: 'Gatling',
-          description: 'Load and performance testing for APIs and services (stress, soak, and throughput tests).',
-          icon: 'tabler:gauge',
-        },
-        {
           title: 'JaCoCo & SonarQube',
           description: 'Code coverage analysis and continuous inspection of code quality and security.',
           icon: 'flat-color-icons:inspection',
         },
         {
           title: 'Angular & React',
-          description: 'Frontend frameworks for building dynamic and responsive user interfaces.',
+          description: 'Frontend development for responsive UIs using Angular/React with HTML and CSS.',
           icon: 'devicon:angular',
         },
         {
           title: 'TypeScript & JavaScript',
           description: 'Modern web development with type-safe code and enhanced developer experience.',
           icon: 'devicon:typescript',
-        },
-        {
-          title: 'NestJS',
-          description: 'Progressive Node.js framework for building efficient and scalable server-side applications.',
-          icon: 'devicon:nestjs',
         },
       ]}
     >
