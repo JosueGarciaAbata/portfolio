@@ -2,17 +2,116 @@
 import Layout from '~/layouts/PageLayout.astro';
 
 import Hero from '~/components/widgets/Hero.astro';
-import Features2 from '~/components/widgets/Features2.astro';
-import ProjectsLatestPosts from '~/components/widgets/ProjectsLatestPosts.astro';
+import ProjectsHighlightedPosts from '~/components/widgets/ProjectsHighlightedPosts.astro';
+import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
   title: 'Full Stack Developer Portfolio — Josue Garcia',
   ignoreTitleTemplate: true,
 };
+
+const skillGroups = [
+  {
+    title: 'Backend',
+    icon: 'tabler:server-2',
+    skills: [
+      'Java',
+      'Spring Boot',
+      'Spring Cloud',
+      'Spring Security',
+      'REST APIs',
+      'Microservices',
+      'JWT',
+      'Node.js',
+      'NestJS',
+      'gRPC',
+      'PHP',
+      'Laravel',
+    ],
+  },
+  {
+    title: 'Frontend',
+    icon: 'tabler:device-laptop',
+    skills: ['Angular', 'React', 'TypeScript', 'JavaScript', 'HTML', 'CSS', 'Tailwind CSS'],
+  },
+  {
+    title: 'Databases',
+    icon: 'tabler:database',
+    skills: ['PostgreSQL', 'MySQL', 'Oracle', 'Redis', 'JPA / Hibernate', 'Citus (distributed)', 'PostGIS', 'SQL'],
+  },
+  {
+    title: 'AI & Computer Vision',
+    icon: 'tabler:brain',
+    skills: [
+      'Computer Vision',
+      'Deep Learning',
+      'YOLOv11',
+      'U-Net',
+      'CNN',
+      'OCR',
+      'Fuzzy Logic',
+      'Genetic Algorithms',
+      'Model Evaluation',
+      'PyTorch',
+      'TensorFlow',
+    ],
+  },
+  {
+    title: 'Testing & Quality',
+    icon: 'tabler:checkup-list',
+    skills: ['JUnit 5', 'Mockito', 'JaCoCo', 'SonarQube', 'JMeter', 'OWASP ZAP', 'Selenium', 'Playwright', 'Postman'],
+  },
+  {
+    title: 'DevOps & Cloud',
+    icon: 'tabler:cloud-cog',
+    skills: [
+      'Docker',
+      'Docker Compose',
+      'Kubernetes',
+      'Helm',
+      'Jenkins',
+      'GitHub Actions',
+      'CI/CD',
+      'Nginx',
+      'AWS',
+      'Azure',
+    ],
+  },
+  {
+    title: 'Messaging & Integration',
+    icon: 'tabler:topology-star-3',
+    skills: ['RabbitMQ', 'gRPC', 'Eureka', 'API Gateway', 'WebSocket', 'OpenAPI / Swagger'],
+  },
+  {
+    title: 'Methods & Tools',
+    icon: 'tabler:tools',
+    skills: ['Scrum', 'Kanban', 'Scrumban', 'Agile', 'Git', 'Linux', 'Maven', 'Vite', 'Odoo', 'Python'],
+  },
+];
+
+const contactLinks = [
+  { label: 'Email', value: 'josuegarcab2@hotmail.com', href: 'mailto:josuegarcab2@hotmail.com', icon: 'tabler:mail' },
+  {
+    label: 'LinkedIn',
+    value: 'in/josue-joel-garcia-abata',
+    href: 'https://www.linkedin.com/in/josue-joel-garcia-abata-07ab94297/',
+    icon: 'tabler:brand-linkedin',
+  },
+  {
+    label: 'GitHub',
+    value: 'JosueGarciaAbata',
+    href: 'https://github.com/JosueGarciaAbata',
+    icon: 'tabler:brand-github',
+  },
+];
+
+const chip =
+  'inline-flex items-center rounded-full bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 ring-1 ring-blue-200 dark:ring-slate-700 px-3 py-1 text-sm font-medium';
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <!-- Hero (Home) ******************* -->
 
   <div id="home" class="scroll-mt-[96px] md:scroll-mt-[88px]">
     <Hero
@@ -24,142 +123,153 @@ const metadata = {
           target: '_blank',
           icon: 'tabler:download',
         },
-        { text: 'View more projects', href: '#projects' },
+        { text: 'View projects', href: '#projects' },
       ]}
       sideImage={{ src: '~/assets/images/profile.jpg', alt: 'Josue Garcia profile photo' }}
     >
-      <Fragment slot="title">
-        Full Stack Developer <span class="hidden xl:inline">building</span>
-        <span class="text-accent dark:text-white"> scalable web apps</span> & microservices
-      </Fragment>
+      <Fragment slot="title">Full Stack Developer</Fragment>
 
       <Fragment slot="subtitle">
-        <span class="hidden sm:inline">
-          <span class="font-semibold">Computer Engineering student</span> focused on end‑to‑end web development.</span
-        >
-        <span class="block mb-1 sm:hidden font-bold text-blue-600">Full Stack Developer</span>
-        I build complete web applications with <span class="font-semibold">Angular</span> and <span
-          class="font-semibold">React</span
-        > on the frontend and
-        <span class="font-semibold">Java + Spring Boot</span> on the backend. Experienced in REST APIs, microservices, Docker,
-        CI/CD, relational databases, and cloud deployments on AWS and Azure.
-      </Fragment>
-
-      <Fragment slot="content">
-        <p
-          class="mt-6 text-sm italic text-muted dark:text-gray-400 intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-        >
-          “What I cannot create, I do not understand.” — Richard Feynman
-        </p>
+        <span class="block text-lg md:text-2xl font-semibold text-default dark:text-white mb-3">
+          Java, Spring Boot, React & PostgreSQL
+        </span>
+        Software Engineering student focused on full stack development with Java, Spring Boot, Angular, React and PostgreSQL.
+        I build APIs, dashboards and microservice-based systems, and I am increasingly drawn to cloud engineering, infrastructure,
+        databases and deployment on AWS and Azure.
       </Fragment>
     </Hero>
   </div>
 
-  <div class="h-4 md:h-8" aria-hidden="true"></div>
+  <!-- Featured projects ************** -->
 
-  <!-- Features2 Widget ************** -->
-
-  <div id="technologies" class="scroll-mt-[96px] md:scroll-mt-[88px]">
-    <Features2
-      title="Tech Stack & Tools"
-      subtitle="Technologies I use to build and ship complete applications (frontend, backend, and cloud)"
-      tagline="Technologies"
-      items={[
-        {
-          title: 'Java 8+',
-          description: 'Core programming language for building enterprise-level applications and microservices.',
-          icon: 'devicon:java',
-        },
-        {
-          title: 'Spring Boot',
-          description:
-            'Framework for creating production-ready applications with embedded servers and auto-configuration.',
-          icon: 'devicon:spring',
-        },
-        {
-          title: 'Spring Cloud',
-          description: 'Building distributed systems and microservices with service discovery and circuit breakers.',
-          icon: 'devicon:spring',
-        },
-        {
-          title: 'Spring Security & JWT',
-          description: 'Implementing authentication, authorization, and secure token-based access control.',
-          icon: 'flat-color-icons:privacy',
-        },
-        {
-          title: 'REST APIs',
-          description: 'Designing and developing RESTful web services following industry best practices.',
-          icon: 'flat-color-icons:data-configuration',
-        },
-        {
-          title: 'PostgreSQL & MySQL',
-          description: 'Relational database design, optimization, and management for scalable applications.',
-          icon: 'devicon:postgresql',
-        },
-        {
-          title: 'Oracle',
-          description: 'Enterprise database experience for high-availability, mission-critical systems.',
-          icon: 'devicon:oracle',
-        },
-        {
-          title: 'Redis',
-          description: 'In-memory caching, pub/sub messaging, and performance optimization for distributed systems.',
-          icon: 'devicon:redis',
-        },
-        {
-          title: 'Docker',
-          description: 'Containerization of applications for consistent deployment across different environments.',
-          icon: 'devicon:docker',
-        },
-        {
-          title: 'Jenkins & GitHub Actions',
-          description: 'CI/CD automation, testing pipelines, and continuous integration workflows.',
-          icon: 'flat-color-icons:workflow',
-        },
-        {
-          title: 'AWS & Azure',
-          description: 'Cloud infrastructure, serverless computing, and managed services deployment.',
-          icon: 'flat-color-icons:linux',
-        },
-        {
-          title: 'JUnit 5 & Mockito',
-          description: 'Unit testing, integration testing, and test-driven development practices.',
-          icon: 'flat-color-icons:approval',
-        },
-        {
-          title: 'JaCoCo & SonarQube',
-          description: 'Code coverage analysis and continuous inspection of code quality and security.',
-          icon: 'flat-color-icons:inspection',
-        },
-        {
-          title: 'Angular & React',
-          description: 'Frontend development for responsive UIs using Angular/React with HTML and CSS.',
-          icon: 'devicon:angular',
-        },
-        {
-          title: 'TypeScript & JavaScript',
-          description: 'Modern web development with type-safe code and enhanced developer experience.',
-          icon: 'devicon:typescript',
-        },
-        {
-          title: 'PHP',
-          description: 'Server-side development for dynamic web applications and API integrations.',
-          icon: 'devicon:php',
-        },
-        {
-          title: 'Laravel',
-          description: 'Building robust backend applications with MVC architecture, Eloquent ORM, and Artisan.',
-          icon: 'devicon:laravel',
-        },
+  <div id="projects" class="scroll-mt-[96px] md:scroll-mt-[88px]">
+    <ProjectsHighlightedPosts
+      classes={{ container: 'max-w-screen-2xl' }}
+      title="Featured projects"
+      linkText="All projects"
+      information="A selection of projects across backend platforms, distributed systems, ERP customization and applied computer vision. The focus is on complete systems: APIs, databases, deployment, integrations and real business workflows."
+      postIds={[
+        'vehicle-monitoring-plate-recognition',
+        'iron-zone-gym-management-odoo',
+        'petsafe-veterinary-clinic-management',
+        'hospital-management-system',
       ]}
-    >
-      <Fragment slot="bg">
-        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-      </Fragment>
-    </Features2>
+    />
   </div>
 
-  <!-- HighlightedPosts Widget ******* -->
+  <!-- Skills ************************* -->
 
-  <ProjectsLatestPosts id="projects" title="Explore my projects" linkText="All projects" count={4} />
+  <section id="skills" class="scroll-mt-[96px] md:scroll-mt-[88px] relative">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="mb-10 md:max-w-3xl">
+        <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">Skills</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2">What I work with</h2>
+        <p class="mt-3 text-lg text-muted dark:text-slate-400">
+          Technologies I use to build full stack systems, from backend services and frontend interfaces to databases,
+          testing, Docker-based environments, CI/CD and cloud fundamentals.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          skillGroups.map((group) => (
+            <div class="rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-5 shadow-sm">
+              <div class="flex items-center gap-2 mb-4">
+                <Icon name={group.icon} class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <h3 class="font-bold text-lg dark:text-slate-200">{group.title}</h3>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {group.skills.map((skill) => (
+                  <span class={chip}>{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- About ************************* -->
+
+  <section id="about" class="scroll-mt-[96px] md:scroll-mt-[88px]">
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+        <div>
+          <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">About me</p>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2 mb-6">
+            From idea to working software
+          </h2>
+          <div class="flex flex-wrap gap-2">
+            <span class={chip}>Full Stack Development</span>
+            <span class={chip}>Cloud Engineering</span>
+            <span class={chip}>Databases</span>
+            <span class={chip}>Infrastructure</span>
+            <span class={chip}>Distributed Systems</span>
+          </div>
+        </div>
+        <div class="space-y-4 text-lg text-muted dark:text-slate-400 leading-relaxed">
+          <p>
+            I'm Josué García, a Software Engineering student who enjoys building systems that go from an idea to working
+            software. Most of my work combines Java and Spring services, Angular and React interfaces, PostgreSQL
+            databases, Docker-based environments and API-driven architectures.
+          </p>
+          <p>
+            What interests me most is what happens underneath a working system: how data is modeled and queried, how
+            services communicate, how applications are deployed, and how infrastructure supports reliability as the
+            system grows. That is what keeps pulling me toward cloud engineering, databases and infrastructure.
+          </p>
+          <p>
+            I have also explored applied AI and computer vision through specific projects, especially when the problem
+            involves detection, recognition or decision support. I see it as an interesting area to integrate into
+            software systems.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact *********************** -->
+
+  <section id="contact" class="scroll-mt-[96px] md:scroll-mt-[88px] relative">
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div>
+        <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">Contact</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2 mb-4">Let's talk</h2>
+        <p class="text-lg text-muted dark:text-slate-400 mb-8 max-w-2xl">
+          Open to opportunities, collaboration and technical conversations around full stack development, backend
+          systems, databases, infrastructure and cloud engineering.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          {
+            contactLinks.map((c) => (
+              <a
+                href={c.href}
+                target={c.href.startsWith('http') ? '_blank' : undefined}
+                rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                class="group flex items-center gap-3 rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-4 shadow-sm hover:ring-blue-400 dark:hover:ring-blue-500 transition"
+              >
+                <Icon name={c.icon} class="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0" />
+                <span class="min-w-0">
+                  <span class="block text-sm font-semibold dark:text-slate-200">{c.label}</span>
+                  <span class="block text-sm text-muted dark:text-slate-400 truncate">{c.value}</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+
+        <Button
+          variant="primary"
+          href="/cv/Josue_Garcia_en.pdf"
+          target="_blank"
+          icon="tabler:download"
+          text="Download CV"
+        />
+      </div>
+    </div>
+  </section>
 </Layout>

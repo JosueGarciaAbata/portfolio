@@ -7,12 +7,20 @@ export const headerData = {
       href: '/#home',
     },
     {
-      text: 'Technologies',
-      href: '/#technologies',
-    },
-    {
       text: 'Projects',
       href: '/#projects',
+    },
+    {
+      text: 'Skills',
+      href: '/#skills',
+    },
+    {
+      text: 'About',
+      href: '/#about',
+    },
+    {
+      text: 'Contact',
+      href: '/#contact',
     },
     {
       text: 'All Projects',
@@ -40,7 +48,11 @@ export const footerData = {
   secondaryLinks: [],
   socialLinks: [
     { ariaLabel: 'GitHub', icon: 'tabler:brand-github', href: 'https://github.com/JosueGarciaAbata' },
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: 'https://www.linkedin.com/in/josue-joel-garcia-abata-07ab94297/' },
+    {
+      ariaLabel: 'LinkedIn',
+      icon: 'tabler:brand-linkedin',
+      href: 'https://www.linkedin.com/in/josue-joel-garcia-abata-07ab94297/',
+    },
     { ariaLabel: 'YouTube', icon: 'tabler:brand-youtube', href: 'https://www.youtube.com/@user-jsg204' },
     { ariaLabel: 'Email', icon: 'tabler:mail', href: 'mailto:josuegarcab2@hotmail.com' },
   ],

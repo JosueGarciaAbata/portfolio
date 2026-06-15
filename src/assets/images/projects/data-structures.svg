@@ -1,0 +1,66 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Linked list data structure project">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111c33"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="8" refY="6" orient="auto">
+      <path d="M2 2 L9 6 L2 10" fill="none" stroke="#60a5fa" stroke-width="2"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg3)"/>
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="80" y="120" fill="#e2e8f0" font-size="58" font-weight="800" letter-spacing="-1">Nature Reserve Manager</text>
+    <text x="82" y="164" fill="#7dd3fc" font-size="24" font-weight="600" letter-spacing="2">DATA STRUCTURES FROM SCRATCH</text>
+
+    <!-- linked list nodes -->
+    <g>
+      <!-- node 1 -->
+      <g>
+        <rect x="90" y="300" width="200" height="110" rx="12" fill="#0f1b30" stroke="#1e2d4a"/>
+        <rect x="90" y="300" width="132" height="110" rx="12" fill="#16243d"/>
+        <text x="156" y="350" fill="#93c5fd" font-size="18" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">data</text>
+        <text x="156" y="378" fill="#64748b" font-size="14" text-anchor="middle">Area</text>
+        <line x1="222" y1="300" x2="222" y2="410" stroke="#1e2d4a"/>
+        <text x="256" y="362" fill="#f59e0b" font-size="16" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">next</text>
+      </g>
+      <line x1="290" y1="355" x2="346" y2="355" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)"/>
+
+      <!-- node 2 -->
+      <g>
+        <rect x="350" y="300" width="200" height="110" rx="12" fill="#0f1b30" stroke="#1e2d4a"/>
+        <rect x="350" y="300" width="132" height="110" rx="12" fill="#16243d"/>
+        <text x="416" y="350" fill="#93c5fd" font-size="18" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">data</text>
+        <text x="416" y="378" fill="#64748b" font-size="14" text-anchor="middle">Ranger</text>
+        <line x1="482" y1="300" x2="482" y2="410" stroke="#1e2d4a"/>
+        <text x="516" y="362" fill="#f59e0b" font-size="16" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">next</text>
+      </g>
+      <line x1="550" y1="355" x2="606" y2="355" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)"/>
+
+      <!-- node 3 -->
+      <g>
+        <rect x="610" y="300" width="200" height="110" rx="12" fill="#0f1b30" stroke="#1e2d4a"/>
+        <rect x="610" y="300" width="132" height="110" rx="12" fill="#16243d"/>
+        <text x="676" y="350" fill="#93c5fd" font-size="18" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">data</text>
+        <text x="676" y="378" fill="#64748b" font-size="14" text-anchor="middle">Visit</text>
+        <line x1="742" y1="300" x2="742" y2="410" stroke="#1e2d4a"/>
+        <text x="776" y="362" fill="#f59e0b" font-size="16" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">next</text>
+      </g>
+      <line x1="810" y1="355" x2="866" y2="355" stroke="#60a5fa" stroke-width="3" marker-end="url(#arrow)"/>
+
+      <!-- null -->
+      <g>
+        <rect x="870" y="320" width="120" height="70" rx="12" fill="#13241c" stroke="#1f5135"/>
+        <text x="930" y="362" fill="#4ade80" font-size="20" font-weight="700" text-anchor="middle" font-family="ui-monospace, monospace">null</text>
+      </g>
+    </g>
+
+    <text x="92" y="500" fill="#94a3b8" font-size="20" font-family="ui-monospace, monospace">LinkedList&lt;T&gt; implements Iterable&lt;T&gt;</text>
+    <g font-family="ui-monospace, monospace" font-size="18" font-weight="700">
+      <text x="92" y="556" fill="#a78bfa">Java</text>
+      <text x="184" y="556" fill="#38bdf8">Generics</text>
+      <text x="320" y="556" fill="#facc15">Iterator</text>
+      <text x="436" y="556" fill="#4ade80">OOP</text>
+    </g>
+  </g>
+</svg>

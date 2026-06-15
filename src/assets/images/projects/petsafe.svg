@@ -1,0 +1,67 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PetSafe veterinary clinic management">
+  <defs>
+    <linearGradient id="pbg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#111c33"/>
+    </linearGradient>
+    <linearGradient id="pemb" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#34d399"/>
+      <stop offset="1" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#pbg)"/>
+  <g font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="80" y="116" fill="#e2e8f0" font-size="62" font-weight="800" letter-spacing="-1">PetSafe</text>
+    <text x="82" y="160" fill="#6ee7b7" font-size="24" font-weight="600" letter-spacing="2">VETERINARY CLINIC MANAGEMENT</text>
+
+    <!-- patient record card -->
+    <rect x="80" y="232" width="600" height="338" rx="18" fill="#0f1b30" stroke="#1e2d4a"/>
+    <g transform="translate(150,300)">
+      <circle r="34" fill="#16243d"/>
+      <ellipse cx="0" cy="9" rx="13" ry="10" fill="#6ee7b7"/>
+      <circle cx="-11" cy="-3" r="4.5" fill="#6ee7b7"/>
+      <circle cx="-4" cy="-8" r="4.5" fill="#6ee7b7"/>
+      <circle cx="4" cy="-8" r="4.5" fill="#6ee7b7"/>
+      <circle cx="11" cy="-3" r="4.5" fill="#6ee7b7"/>
+    </g>
+    <text x="206" y="294" fill="#e2e8f0" font-size="26" font-weight="700">Luna · Golden Retriever</text>
+    <text x="206" y="324" fill="#64748b" font-size="17">Owner: María Pérez · ID PET-0428</text>
+
+    <rect x="112" y="360" width="250" height="64" rx="10" fill="#13203a"/>
+    <text x="132" y="388" fill="#93c5fd" font-size="15" font-weight="700">Next appointment</text>
+    <text x="132" y="410" fill="#cbd5e1" font-size="15">Vaccination · 09:30</text>
+
+    <rect x="398" y="360" width="250" height="64" rx="10" fill="#13203a"/>
+    <text x="418" y="388" fill="#6ee7b7" font-size="15" font-weight="700">Queue status</text>
+    <text x="418" y="410" fill="#cbd5e1" font-size="15">In progress · #3</text>
+
+    <rect x="112" y="440" width="536" height="46" rx="10" fill="#13203a"/>
+    <text x="132" y="469" fill="#cbd5e1" font-size="15">Encounter · clinical follow-up recorded</text>
+    <rect x="112" y="500" width="536" height="46" rx="10" fill="#13203a"/>
+    <text x="132" y="529" fill="#cbd5e1" font-size="15">Vaccination · rabies · up to date</text>
+
+    <!-- emblem: paw + medical cross -->
+    <g transform="translate(910,400)">
+      <circle r="150" fill="#0f1b30" stroke="#1e2d4a" stroke-width="2"/>
+      <!-- paw -->
+      <ellipse cx="0" cy="34" rx="50" ry="40" fill="url(#pemb)"/>
+      <circle cx="-44" cy="-6" r="17" fill="url(#pemb)"/>
+      <circle cx="-16" cy="-26" r="17" fill="url(#pemb)"/>
+      <circle cx="16" cy="-26" r="17" fill="url(#pemb)"/>
+      <circle cx="44" cy="-6" r="17" fill="url(#pemb)"/>
+      <!-- medical cross badge -->
+      <g transform="translate(74,-70)">
+        <circle r="30" fill="#0b1220" stroke="#34d399" stroke-width="3"/>
+        <rect x="-5" y="-15" width="10" height="30" rx="3" fill="#34d399"/>
+        <rect x="-15" y="-5" width="30" height="10" rx="3" fill="#34d399"/>
+      </g>
+    </g>
+
+    <g font-family="ui-monospace, monospace" font-size="18" font-weight="700">
+      <text x="84" y="624" fill="#e0234e">NestJS</text>
+      <text x="190" y="624" fill="#dd0031">Angular</text>
+      <text x="306" y="624" fill="#38bdf8">PostgreSQL</text>
+      <text x="450" y="624" fill="#a78bfa">WebSockets</text>
+    </g>
+  </g>
+</svg>
