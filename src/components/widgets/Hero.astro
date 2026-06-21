@@ -20,8 +20,8 @@ const {
 } = Astro.props;
 
 const hasSideImage = Boolean(sideImage);
-const sideImageProps: Record<string, any> =
-  typeof sideImage === 'object' && sideImage ? (sideImage as Record<string, any>) : {};
+const sideImageProps: Record<string, unknown> =
+  typeof sideImage === 'object' && sideImage ? (sideImage as Record<string, unknown>) : {};
 ---
 
 <section class:list={['relative not-prose', { 'md:-mt-[76px]': !hasSideImage }]} {...id ? { id } : {}}>
