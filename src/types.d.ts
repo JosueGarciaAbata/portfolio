@@ -15,6 +15,8 @@ export interface Post {
   publishDate: Date;
   /**  */
   updateDate?: Date;
+  /** Hide the publish date in the UI (it still drives the ordering) */
+  hideDate?: boolean;
 
   /**  */
   title: string;

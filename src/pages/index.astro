@@ -98,11 +98,8 @@ const experience = {
   role: 'Software Developer',
   company: 'Kronhos',
   period: 'May 2026 – Aug 2026',
-  highlights: [
-    "Built an internal AI assistant that answers staff questions in Spanish using the company's own documents and tickets, as a web chat and on WhatsApp.",
-    'Created the admin panel to set up several assistants, each with its own behavior and the actions it is allowed to perform, plus users with roles and permissions.',
-    'Connected spreadsheets and web pages as sources, and set up automatic testing and deployment for the backend and frontend.',
-  ],
+  summary:
+    "Built an internal AI assistant that answers staff questions in Spanish using the company's own documents and tickets, available as a web chat and on WhatsApp. I also created the admin panel to set up several assistants, each with its own behavior and allowed actions, with users, roles and permissions, and I set up automatic testing and deployment for the backend and frontend.",
   tags: ['Python', 'FastAPI', 'Angular', 'PostgreSQL', 'AI Assistants', 'WhatsApp', 'CI/CD'],
   href: getPermalink('kronhos-ai-assistant', 'post'),
 };
@@ -185,9 +182,7 @@ const chip =
             <h3 class="font-bold text-xl dark:text-slate-200">{experience.role} — {experience.company}</h3>
           </div>
           <p class="text-sm text-muted dark:text-slate-400 mb-4">{experience.period}</p>
-          <ul class="list-disc pl-5 space-y-2 text-muted dark:text-slate-400">
-            {experience.highlights.map((item) => <li>{item}</li>)}
-          </ul>
+          <p class="text-muted dark:text-slate-400">{experience.summary}</p>
           <div class="flex flex-wrap gap-2 mt-5">
             {experience.tags.map((tag) => <span class={chip}>{tag}</span>)}
           </div>
