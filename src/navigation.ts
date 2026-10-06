@@ -7,6 +7,10 @@ export const headerData = {
       href: '/#home',
     },
     {
+      text: 'Experience',
+      href: '/#experience',
+    },
+    {
       text: 'Projects',
       href: '/#projects',
     },

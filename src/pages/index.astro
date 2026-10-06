@@ -5,6 +5,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import ProjectsHighlightedPosts from '~/components/widgets/ProjectsHighlightedPosts.astro';
 import Button from '~/components/ui/Button.astro';
 import { Icon } from 'astro-icon/components';
+import { getPermalink } from '~/utils/permalinks';
 
 const metadata = {
   title: 'Software Engineer Portfolio — Josue Garcia',
@@ -25,9 +26,11 @@ const skillGroups = [
       'JWT',
       'Node.js',
       'NestJS',
+      'FastAPI',
       'gRPC',
       'PHP',
       'Laravel',
+      'Go',
     ],
   },
   {
@@ -44,6 +47,7 @@ const skillGroups = [
     title: 'AI & Computer Vision',
     icon: 'tabler:brain',
     skills: [
+      'AI Assistants (RAG)',
       'Computer Vision',
       'Deep Learning',
       'YOLOv11',
@@ -87,6 +91,30 @@ const skillGroups = [
     title: 'Methods & Tools',
     icon: 'tabler:tools',
     skills: ['Scrum', 'Kanban', 'Scrumban', 'Agile', 'Git', 'Linux', 'Maven', 'Vite', 'Odoo', 'Python'],
+  },
+];
+
+const experience = {
+  role: 'Software Developer',
+  company: 'Kronhos',
+  period: 'May 2026 – Aug 2026',
+  highlights: [
+    "Built an internal AI assistant that answers staff questions in Spanish using the company's own documents and tickets, as a web chat and on WhatsApp.",
+    'Created the admin panel to set up several assistants, each with its own behavior and the actions it is allowed to perform, plus users with roles and permissions.',
+    'Connected spreadsheets and web pages as sources, and set up automatic testing and deployment for the backend and frontend.',
+  ],
+  tags: ['Python', 'FastAPI', 'Angular', 'PostgreSQL', 'AI Assistants', 'WhatsApp', 'CI/CD'],
+  href: getPermalink('kronhos-ai-assistant', 'post'),
+};
+
+const certifications = [
+  {
+    name: 'AWS Certified AI Practitioner',
+    issuer: 'Amazon Web Services',
+    issued: 'Issued Sep 22, 2026',
+    valid: 'Valid until Sep 22, 2029',
+    id: 'd8a08634715d4aac8046dc7b2128784b',
+    href: 'https://aws.amazon.com/verification',
   },
 ];
 
@@ -138,6 +166,68 @@ const chip =
       </Fragment>
     </Hero>
   </div>
+
+  <!-- Experience & certifications ************** -->
+
+  <section id="experience" class="scroll-mt-[96px] md:scroll-mt-[88px]">
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="mb-10 md:max-w-3xl">
+        <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">Experience</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2">Work and certifications</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div
+          class="lg:col-span-2 rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-6 shadow-sm"
+        >
+          <div class="flex items-center gap-2 mb-1">
+            <Icon name="tabler:briefcase" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+            <h3 class="font-bold text-xl dark:text-slate-200">{experience.role} — {experience.company}</h3>
+          </div>
+          <p class="text-sm text-muted dark:text-slate-400 mb-4">{experience.period}</p>
+          <ul class="list-disc pl-5 space-y-2 text-muted dark:text-slate-400">
+            {experience.highlights.map((item) => <li>{item}</li>)}
+          </ul>
+          <div class="flex flex-wrap gap-2 mt-5">
+            {experience.tags.map((tag) => <span class={chip}>{tag}</span>)}
+          </div>
+          <a
+            href={experience.href}
+            class="inline-flex items-center gap-1 mt-5 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+          >
+            Read more about this project
+            <Icon name="tabler:arrow-right" class="w-4 h-4" />
+          </a>
+        </div>
+
+        <div>
+          {
+            certifications.map((cert) => (
+              <div class="rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-6 shadow-sm">
+                <div class="flex items-center gap-2 mb-1">
+                  <Icon name="tabler:certificate" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                  <h3 class="font-bold text-xl dark:text-slate-200">{cert.name}</h3>
+                </div>
+                <p class="text-sm text-muted dark:text-slate-400 mb-4">{cert.issuer}</p>
+                <p class="text-muted dark:text-slate-400">{cert.issued}</p>
+                <p class="text-muted dark:text-slate-400">{cert.valid}</p>
+                <p class="text-xs text-muted dark:text-slate-400 mt-3 break-all">Validation number: {cert.id}</p>
+                <a
+                  href={cert.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1 mt-4 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+                >
+                  Verify on AWS
+                  <Icon name="tabler:external-link" class="w-4 h-4" />
+                </a>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Featured projects ************** -->
 
@@ -220,9 +310,9 @@ const chip =
             system grows.
           </p>
           <p>
-            I have also explored applied AI and computer vision through specific projects, especially when the problem
-            involves detection, recognition or decision support. I see it as an interesting area to integrate into
-            software systems.
+            I have also worked with applied AI, from an internal AI assistant for a company to computer vision projects
+            where the problem involves detection, recognition or decision support, and I hold the AWS Certified AI
+            Practitioner certification. I see it as an interesting area to integrate into software systems.
           </p>
         </div>
       </div>
