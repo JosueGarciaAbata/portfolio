@@ -3,6 +3,7 @@ publishDate: 2026-10-05T10:00:00Z
 title: Secure LaTeX Editor
 excerpt: A web text editor to write, compile and share LaTeX documents, designed around safe compilation. Every document is turned into a PDF inside an isolated container, with strict access control and encrypted storage.
 category: Projects
+draft: true
 tags:
   - Angular
   - Spring Boot

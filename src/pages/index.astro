@@ -95,13 +95,20 @@ const skillGroups = [
 ];
 
 const experience = {
-  role: 'Software Developer',
+  role: 'Software Developer — AI & Backend Systems',
   company: 'Kronhos',
   period: 'May 2026 – Aug 2026',
-  summary:
-    "Built an internal AI assistant that answers staff questions in Spanish using the company's own documents and tickets, available as a web chat and on WhatsApp. I also created the admin panel to set up several assistants, each with its own behavior and allowed actions, with users, roles and permissions, and I set up automatic testing and deployment for the backend and frontend.",
-  tags: ['Python', 'FastAPI', 'Angular', 'PostgreSQL', 'AI Assistants', 'WhatsApp', 'CI/CD'],
-  href: getPermalink('kronhos-ai-assistant', 'post'),
+  bullets: [
+    'Architected a multi-tenant AI support platform with Python, FastAPI, Angular and PostgreSQL, using a layered design and per-tenant isolation, and deployed it to Azure with Nginx, systemd and a GitHub Actions CI/CD pipeline.',
+    'Built a RAG pipeline with OpenAI embeddings and pgvector (HNSW), plus a custom agent orchestrator using function calling, authorized APIs and read-only DuckDB queries over CSV/Excel.',
+    'Integrated agents with WhatsApp through UltraMsg and validated the chat API with k6 (632 requests, 0% HTTP errors, p95 2.31 s at 10 virtual users), with Prometheus/Grafana monitoring.',
+  ],
+  images: [
+    { src: '/images/projects/kronhos/assistant.png', alt: 'Kronhos admin panel with the assistant chat' },
+    { src: '/images/projects/kronhos/conversations.png', alt: 'Kronhos admin panel listing WhatsApp conversations' },
+  ],
+  tags: ['Python', 'FastAPI', 'Angular', 'PostgreSQL', 'pgvector', 'RAG', 'WhatsApp', 'Azure', 'CI/CD'],
+  href: getPermalink('projects/kronhos-ai-assistant', 'post'),
 };
 
 const certifications = [
@@ -111,6 +118,7 @@ const certifications = [
     issued: 'Issued Sep 22, 2026',
     valid: 'Valid until Sep 22, 2029',
     id: 'd8a08634715d4aac8046dc7b2128784b',
+    image: '/images/certifications/aws-ai-practitioner.png',
     href: 'https://aws.amazon.com/verification',
   },
 ];
@@ -164,62 +172,54 @@ const chip =
     </Hero>
   </div>
 
-  <!-- Experience & certifications ************** -->
+  <!-- Professional experience ************** -->
 
   <section id="experience" class="scroll-mt-[96px] md:scroll-mt-[88px]">
     <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
       <div class="mb-10 md:max-w-3xl">
         <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">Experience</p>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2">Work and certifications</h2>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2">Professional experience</h2>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div
-          class="lg:col-span-2 rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-6 shadow-sm"
-        >
-          <div class="flex items-center gap-2 mb-1">
-            <Icon name="tabler:briefcase" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
-            <h3 class="font-bold text-xl dark:text-slate-200">{experience.role} — {experience.company}</h3>
-          </div>
-          <p class="text-sm text-muted dark:text-slate-400 mb-4">{experience.period}</p>
-          <p class="text-muted dark:text-slate-400">{experience.summary}</p>
-          <div class="flex flex-wrap gap-2 mt-5">
-            {experience.tags.map((tag) => <span class={chip}>{tag}</span>)}
-          </div>
-          <a
-            href={experience.href}
-            class="inline-flex items-center gap-1 mt-5 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
-          >
-            Read more about this project
-            <Icon name="tabler:arrow-right" class="w-4 h-4" />
-          </a>
+      <div
+        class="rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-6 md:p-8 shadow-sm"
+      >
+        <div class="flex items-center gap-2 mb-1">
+          <Icon name="tabler:briefcase" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          <h3 class="font-bold text-xl dark:text-slate-200">{experience.role} — {experience.company}</h3>
         </div>
+        <p class="text-sm text-muted dark:text-slate-400 mb-5">{experience.period}</p>
 
-        <div>
+        <ul class="list-disc pl-5 space-y-3 text-muted dark:text-slate-400">
+          {experience.bullets.map((bullet) => <li>{bullet}</li>)}
+        </ul>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
           {
-            certifications.map((cert) => (
-              <div class="rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-6 shadow-sm">
-                <div class="flex items-center gap-2 mb-1">
-                  <Icon name="tabler:certificate" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                  <h3 class="font-bold text-xl dark:text-slate-200">{cert.name}</h3>
-                </div>
-                <p class="text-sm text-muted dark:text-slate-400 mb-4">{cert.issuer}</p>
-                <p class="text-muted dark:text-slate-400">{cert.issued}</p>
-                <p class="text-muted dark:text-slate-400">{cert.valid}</p>
-                <p class="text-xs text-muted dark:text-slate-400 mt-3 break-all">Validation number: {cert.id}</p>
-                <a
-                  href={cert.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1 mt-4 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
-                >
-                  Verify on AWS
-                  <Icon name="tabler:external-link" class="w-4 h-4" />
-                </a>
-              </div>
+            experience.images.map((image) => (
+              <a href={experience.href} class="block">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  class="w-full h-48 object-cover object-top rounded-lg ring-1 ring-gray-200 dark:ring-slate-700 bg-white"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
             ))
           }
         </div>
+
+        <div class="flex flex-wrap gap-2 mt-6">
+          {experience.tags.map((tag) => <span class={chip}>{tag}</span>)}
+        </div>
+        <a
+          href={experience.href}
+          class="inline-flex items-center gap-1 mt-5 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+        >
+          Read more about this project
+          <Icon name="tabler:arrow-right" class="w-4 h-4" />
+        </a>
       </div>
     </div>
   </section>
@@ -240,6 +240,50 @@ const chip =
       ]}
     />
   </div>
+
+  <!-- Certifications ************** -->
+
+  <section id="certifications" class="scroll-mt-[96px] md:scroll-mt-[88px]">
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="mb-10 md:max-w-3xl">
+        <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase">Certifications</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight font-heading mt-2">Credentials</h2>
+      </div>
+
+      {
+        certifications.map((cert) => (
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 p-6 shadow-sm">
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <Icon name="tabler:certificate" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <h3 class="font-bold text-xl dark:text-slate-200">{cert.name}</h3>
+              </div>
+              <p class="text-sm text-muted dark:text-slate-400 mb-4">{cert.issuer}</p>
+              <p class="text-muted dark:text-slate-400">{cert.issued}</p>
+              <p class="text-muted dark:text-slate-400">{cert.valid}</p>
+              <p class="text-xs text-muted dark:text-slate-400 mt-3 break-all">Validation number {cert.id}</p>
+              <a
+                href={cert.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1 mt-4 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+              >
+                Verify on AWS
+                <Icon name="tabler:external-link" class="w-4 h-4" />
+              </a>
+            </div>
+            <img
+              src={cert.image}
+              alt={`${cert.name} credential verification`}
+              class="w-full rounded-lg ring-1 ring-gray-200 dark:ring-slate-700"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </section>
 
   <!-- Skills ************************* -->
 
@@ -306,8 +350,8 @@ const chip =
           </p>
           <p>
             I have also worked with applied AI, from an internal AI assistant for a company to computer vision projects
-            where the problem involves detection, recognition or decision support, and I hold the AWS Certified AI
-            Practitioner certification. I see it as an interesting area to integrate into software systems.
+            where the problem involves detection, recognition or decision support. I see it as an interesting area to
+            integrate into software systems.
           </p>
         </div>
       </div>
