@@ -166,7 +166,7 @@ const heroLinks = [
 const cvText = t('Download CV', 'Descargar CV');
 
 const chip =
-  'inline-flex items-center rounded-full bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 ring-1 ring-blue-200 dark:ring-slate-700 px-3 py-1 text-sm font-medium';
+  'inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium';
 const card = 'rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm';
 const h2 = 'text-3xl md:text-4xl font-bold tracking-tight font-heading';
 const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
@@ -194,8 +194,8 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
       <Fragment slot="subtitle">
         {
           t(
-            'I build APIs, dashboards and microservice systems.',
-            'Construyo APIs, dashboards y sistemas de microservicios.'
+            'Software engineer who builds APIs, dashboards and microservice systems.',
+            'Ingeniero de software que construye APIs, dashboards y sistemas de microservicios.'
           )
         }
       </Fragment>
@@ -240,12 +240,12 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
         <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
             <div class="flex items-center gap-2 mb-1">
-              <Icon name="tabler:briefcase" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <Icon name="tabler:briefcase" class="w-5 h-5 text-primary dark:text-blue-400" />
               <h3 class="font-bold text-xl dark:text-slate-200">{experience.role}, {experience.company}</h3>
             </div>
             <p class="text-sm text-muted dark:text-slate-400 mb-5">{experience.period}</p>
 
-            <ul class="list-disc pl-5 space-y-2 text-muted dark:text-slate-400">
+            <ul class="space-y-2 text-muted dark:text-slate-400">
               {experience.bullets.map((bullet) => <li>{bullet}</li>)}
             </ul>
 
@@ -253,7 +253,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
               {
                 experience.stats.map((stat) => (
                   <div>
-                    <dt class="text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-300">{stat.value}</dt>
+                    <dt class="text-2xl md:text-3xl font-bold text-default dark:text-white">{stat.value}</dt>
                     <dd class="text-xs md:text-sm text-muted dark:text-slate-400">{stat.label}</dd>
                   </div>
                 ))
@@ -265,7 +265,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
             </div>
             <a
               href={experience.href}
-              class="inline-flex items-center gap-1 mt-5 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+              class="inline-flex items-center gap-1 mt-5 font-semibold text-primary dark:text-blue-300 hover:underline"
             >
               {t('See the project', 'Ver el proyecto')}
               <Icon name="tabler:arrow-right" class="w-4 h-4" />
@@ -311,7 +311,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
   <!-- Skills ************************* -->
 
   <section id="skills" class:list={[section, 'relative']}>
-    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    <div class="absolute inset-0 bg-slate-200/60 dark:bg-transparent"></div>
     <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
       <h2 class:list={[h2, 'mb-8']}>{t('Stack', 'Tecnologías')}</h2>
 
@@ -320,14 +320,14 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
           skillGroups.map((group) => (
             <div class:list={[card, 'p-5']}>
               <div class="flex items-center gap-2 mb-4">
-                <Icon name={group.icon} class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <Icon name={group.icon} class="w-5 h-5 text-primary dark:text-blue-400" />
                 <h3 class="font-bold text-lg dark:text-slate-200">{group.title}</h3>
               </div>
               <ul class="grid grid-cols-3 gap-4">
                 {group.skills.map((skill) => (
                   <li class="flex flex-col items-center gap-2 text-center">
                     <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200 dark:ring-slate-600">
-                      <Icon name={skill.icon} class="h-7 w-7 text-blue-600" aria-hidden="true" />
+                      <Icon name={skill.icon} class="h-7 w-7 text-primary" aria-hidden="true" />
                     </span>
                     <span class="text-xs font-medium text-muted dark:text-slate-300">{skill.name}</span>
                   </li>
@@ -350,8 +350,8 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
           <p class="text-lg text-muted dark:text-slate-400 leading-relaxed max-w-prose">
             {
               t(
-                'I take systems from idea to production: data model, services and deployment.',
-                'Llevo sistemas de la idea a producción: modelo de datos, servicios y despliegue.'
+                'Software engineer focused on scalable applications: REST APIs with clean architecture, databases, CI/CD pipelines and Python automation.',
+                'Ingeniero de software enfocado en aplicaciones escalables: APIs REST con arquitectura limpia, bases de datos, pipelines de CI/CD y automatizaciones con Python.'
               )
             }
           </p>
@@ -363,7 +363,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
             href={certification.href}
             target="_blank"
             rel="noopener noreferrer"
-            class:list={[card, 'flex items-center gap-4 p-4 hover:ring-blue-400 dark:hover:ring-blue-500 transition']}
+            class:list={[card, 'flex items-center gap-4 p-4 hover:ring-primary dark:hover:ring-blue-500 transition']}
           >
             <img
               src={certification.image}
@@ -374,11 +374,11 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
             />
             <span class="min-w-0">
               <span class="flex items-center gap-1.5 font-bold dark:text-slate-200">
-                <Icon name="tabler:certificate" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
+                <Icon name="tabler:certificate" class="w-5 h-5 text-primary dark:text-blue-400 shrink-0" />
                 {certification.name}
               </span>
               <span class="block text-sm text-muted dark:text-slate-400 mt-1">{certification.issued}</span>
-              <span class="inline-flex items-center gap-1 text-sm font-semibold text-blue-700 dark:text-blue-300 mt-2">
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-blue-300 mt-2">
                 {t('Verify on AWS', 'Verificar en AWS')}
                 <Icon name="tabler:external-link" class="w-4 h-4" />
               </span>
@@ -392,7 +392,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
   <!-- Contact *********************** -->
 
   <section id="contact" class:list={[section, 'relative']}>
-    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    <div class="absolute inset-0 bg-slate-200/60 dark:bg-transparent"></div>
     <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
       <h2 class:list={[h2, 'mb-8']}>{t('Contact me', 'Contáctame')}</h2>
 
@@ -403,9 +403,9 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
               href={c.href}
               target={c.href.startsWith('http') ? '_blank' : undefined}
               rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              class:list={[card, 'flex items-center gap-3 p-4 hover:ring-blue-400 dark:hover:ring-blue-500 transition']}
+              class:list={[card, 'flex items-center gap-3 p-4 hover:ring-primary dark:hover:ring-blue-500 transition']}
             >
-              <Icon name={c.icon} class="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0" />
+              <Icon name={c.icon} class="w-6 h-6 text-primary dark:text-blue-400 shrink-0" />
               <span class="min-w-0">
                 <span class="block text-sm font-semibold dark:text-slate-200">{c.label}</span>
                 <span class="block text-sm text-muted dark:text-slate-400 truncate">{c.value}</span>
