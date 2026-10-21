@@ -1,0 +1,421 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import ProjectsHighlightedPosts from '~/components/widgets/ProjectsHighlightedPosts.astro';
+import Button from '~/components/ui/Button.astro';
+import { Icon } from 'astro-icon/components';
+import { getPermalink } from '~/utils/permalinks';
+
+export interface Props {
+  lang?: 'en' | 'es';
+}
+
+const { lang = 'en' } = Astro.props;
+const t = (en: string, es: string) => (lang === 'es' ? es : en);
+
+const metadata = {
+  title: t('Software Engineer Portfolio — Josue Garcia', 'Portafolio de Ingeniero de Software — Josue Garcia'),
+  ignoreTitleTemplate: true,
+};
+
+const heroStack = ['java', 'spring', 'angular', 'react', 'postgresql', 'docker', 'amazonwebservices'];
+
+const skillGroups = [
+  {
+    title: 'Backend',
+    icon: 'tabler:server-2',
+    skills: [
+      { name: 'Java', icon: 'devicon:java' },
+      { name: 'Spring Boot', icon: 'devicon:spring' },
+      { name: 'Python', icon: 'devicon:python' },
+      { name: 'FastAPI', icon: 'devicon:fastapi' },
+      { name: 'Node.js', icon: 'devicon:nodejs' },
+    ],
+  },
+  {
+    title: 'Frontend',
+    icon: 'tabler:device-laptop',
+    skills: [
+      { name: 'Angular', icon: 'devicon:angular' },
+      { name: 'React', icon: 'devicon:react' },
+      { name: 'TypeScript', icon: 'devicon:typescript' },
+    ],
+  },
+  {
+    title: t('AI', 'IA'),
+    icon: 'tabler:brain',
+    skills: [
+      { name: 'RAG', icon: 'tabler:file-search' },
+      { name: 'AI Agents', icon: 'tabler:robot' },
+      { name: t('Automation', 'Automatización'), icon: 'tabler:settings-automation' },
+      { name: 'Computer Vision', icon: 'tabler:eye' },
+    ],
+  },
+  {
+    title: t('Databases', 'Bases de datos'),
+    icon: 'tabler:database',
+    skills: [
+      { name: 'PostgreSQL', icon: 'devicon:postgresql' },
+      { name: 'MySQL', icon: 'devicon:mysql' },
+      { name: 'Redis', icon: 'devicon:redis' },
+      { name: 'Oracle', icon: 'devicon:oracle' },
+      { name: 'SQLite', icon: 'devicon:sqlite' },
+    ],
+  },
+  {
+    title: t('Architecture', 'Arquitectura'),
+    icon: 'tabler:hierarchy-2',
+    skills: [
+      { name: 'Microservices', icon: 'tabler:topology-star-3' },
+      { name: 'REST APIs', icon: 'tabler:api' },
+      { name: 'API Gateway', icon: 'tabler:layout-board' },
+    ],
+  },
+  {
+    title: t('Testing', 'Pruebas'),
+    icon: 'tabler:checkup-list',
+    skills: [
+      { name: 'JUnit', icon: 'devicon:junit' },
+      { name: 'Playwright', icon: 'devicon:playwright' },
+      { name: 'Postman', icon: 'devicon:postman' },
+      { name: 'k6', icon: 'devicon:k6' },
+    ],
+  },
+  {
+    title: t('DevOps & Monitoring', 'DevOps y monitoreo'),
+    icon: 'tabler:cloud-cog',
+    skills: [
+      { name: 'Docker', icon: 'devicon:docker' },
+      { name: 'AWS', icon: 'devicon:amazonwebservices' },
+      { name: 'Azure', icon: 'devicon:azure' },
+      { name: 'GitHub Actions', icon: 'devicon:githubactions' },
+      { name: 'Prometheus', icon: 'devicon:prometheus' },
+      { name: 'Grafana', icon: 'devicon:grafana' },
+    ],
+  },
+];
+
+const experience = {
+  role: t('Software Developer', 'Desarrollador de Software'),
+  company: 'Kronhos',
+  period: t('May 2026 – Aug 2026', 'May 2026 – Ago 2026'),
+  bullets: [
+    t(
+      'Built a multi-tenant AI support platform with FastAPI, Angular and PostgreSQL, deployed on Azure with CI/CD.',
+      'Construí una plataforma de soporte con IA multi-tenant con FastAPI, Angular y PostgreSQL, desplegada en Azure con CI/CD.'
+    ),
+    t(
+      'Added a RAG pipeline (pgvector) and an agent orchestrator connected to WhatsApp.',
+      'Añadí un pipeline RAG (pgvector) y un orquestador de agentes conectado a WhatsApp.'
+    ),
+  ],
+  stats: [
+    { value: '0%', label: t('HTTP errors under load', 'errores HTTP bajo carga') },
+    { value: '2.31 s', label: t('p95 latency at 10 users', 'latencia p95 con 10 usuarios') },
+    { value: '632', label: t('requests load-tested (k6)', 'peticiones probadas (k6)') },
+  ],
+  images: [
+    {
+      src: '/images/projects/kronhos/assistant.png',
+      alt: t('Kronhos admin panel with the assistant chat', 'Panel de Kronhos con el chat del asistente'),
+    },
+    {
+      src: '/images/projects/kronhos/conversations.png',
+      alt: t('Kronhos admin panel listing WhatsApp conversations', 'Panel de Kronhos con conversaciones de WhatsApp'),
+    },
+  ],
+  tags: ['FastAPI', 'Angular', 'PostgreSQL', 'pgvector', 'Azure'],
+  href: getPermalink('projects/kronhos-ai-assistant', 'post'),
+};
+
+const certification = {
+  name: 'AWS Certified AI Practitioner',
+  issued: t('Issued Sep 2026 · valid until Sep 2029', 'Emitida sep 2026 · vigente hasta sep 2029'),
+  image: '/images/certifications/aws-ai-practitioner.png',
+  href: 'https://aws.amazon.com/verification',
+};
+
+const contactLinks = [
+  { label: 'Email', value: 'josuegarcab2@gmail.com', href: 'mailto:josuegarcab2@gmail.com', icon: 'tabler:mail' },
+  {
+    label: 'LinkedIn',
+    value: 'in/josué-garcía',
+    href: 'https://www.linkedin.com/in/josu%C3%A9-garc%C3%ADa-07ab94297/',
+    icon: 'tabler:brand-linkedin',
+  },
+  {
+    label: 'GitHub',
+    value: 'JosueGarciaAbata',
+    href: 'https://github.com/JosueGarciaAbata',
+    icon: 'tabler:brand-github',
+  },
+];
+
+const heroLinks = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/josu%C3%A9-garc%C3%ADa-07ab94297/',
+    icon: 'tabler:brand-linkedin',
+  },
+  { label: 'GitHub', href: 'https://github.com/JosueGarciaAbata', icon: 'tabler:brand-github' },
+  { label: 'YouTube', href: 'https://www.youtube.com/@user-jsg204', icon: 'tabler:brand-youtube' },
+  { label: 'Email', href: 'mailto:josuegarcab2@gmail.com', icon: 'tabler:mail' },
+];
+
+const cvText = t('Download CV', 'Descargar CV');
+
+const chip =
+  'inline-flex items-center rounded-full bg-blue-50 dark:bg-slate-800 text-blue-700 dark:text-blue-300 ring-1 ring-blue-200 dark:ring-slate-700 px-3 py-1 text-sm font-medium';
+const card = 'rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm';
+const h2 = 'text-3xl md:text-4xl font-bold tracking-tight font-heading';
+const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
+---
+
+<Layout metadata={metadata} lang={lang}>
+  <!-- Hero ******************* -->
+
+  <div id="home" class={section}>
+    <Hero
+      actions={[
+        {
+          variant: 'primary',
+          text: cvText,
+          href: '/cv/Josue_Garcia_en.pdf',
+          target: '_blank',
+          icon: 'tabler:download',
+        },
+        { text: t('View projects', 'Ver proyectos'), href: '#projects' },
+      ]}
+      sideImage={{ src: '~/assets/images/profile.jpg', alt: 'Josue Garcia' }}
+    >
+      <Fragment slot="title">{t('Software Engineer', 'Ingeniero de Software')}</Fragment>
+
+      <Fragment slot="subtitle">
+        {
+          t(
+            'I build APIs, dashboards and microservice systems.',
+            'Construyo APIs, dashboards y sistemas de microservicios.'
+          )
+        }
+      </Fragment>
+
+      <Fragment slot="content">
+        <div class="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-3">
+          {
+            heroStack.map((name) => (
+              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200 dark:ring-slate-600 shadow-sm">
+                <Icon name={`devicon:${name}`} class="h-7 w-7" aria-label={name} />
+              </span>
+            ))
+          }
+        </div>
+        <div class="mt-5 flex items-center justify-center md:justify-start gap-4">
+          {
+            heroLinks.map((l) => (
+              <a
+                href={l.href}
+                target={l.href.startsWith('http') ? '_blank' : undefined}
+                rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                aria-label={l.label}
+                title={l.label}
+                class="text-muted dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+              >
+                <Icon name={l.icon} class="w-7 h-7" />
+              </a>
+            ))
+          }
+        </div>
+      </Fragment>
+    </Hero>
+  </div>
+
+  <!-- Experience ************** -->
+
+  <section id="experience" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <h2 class:list={[h2, 'mb-8']}>{t('Experience', 'Experiencia')}</h2>
+
+      <div class:list={[card, 'p-6 md:p-8']}>
+        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <Icon name="tabler:briefcase" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              <h3 class="font-bold text-xl dark:text-slate-200">{experience.role}, {experience.company}</h3>
+            </div>
+            <p class="text-sm text-muted dark:text-slate-400 mb-5">{experience.period}</p>
+
+            <ul class="list-disc pl-5 space-y-2 text-muted dark:text-slate-400">
+              {experience.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
+
+            <dl class="grid grid-cols-3 gap-4 mt-6">
+              {
+                experience.stats.map((stat) => (
+                  <div>
+                    <dt class="text-2xl md:text-3xl font-bold text-blue-700 dark:text-blue-300">{stat.value}</dt>
+                    <dd class="text-xs md:text-sm text-muted dark:text-slate-400">{stat.label}</dd>
+                  </div>
+                ))
+              }
+            </dl>
+
+            <div class="flex flex-wrap gap-2 mt-6">
+              {experience.tags.map((tag) => <span class={chip}>{tag}</span>)}
+            </div>
+            <a
+              href={experience.href}
+              class="inline-flex items-center gap-1 mt-5 font-semibold text-blue-700 dark:text-blue-300 hover:underline"
+            >
+              {t('See the project', 'Ver el proyecto')}
+              <Icon name="tabler:arrow-right" class="w-4 h-4" />
+            </a>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            {
+              experience.images.map((image) => (
+                <a href={experience.href} class="block">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    class="w-full h-56 object-cover object-top rounded-lg ring-1 ring-gray-200 dark:ring-slate-700 bg-white"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured projects ************** -->
+
+  <div id="projects" class={section}>
+    <ProjectsHighlightedPosts
+      classes={{ container: 'max-w-screen-2xl' }}
+      title={t('Featured projects', 'Proyectos destacados')}
+      linkText={t('All projects', 'Todos los proyectos')}
+      postIds={[
+        'vehicle-monitoring-plate-recognition',
+        'iron-zone-gym-management-odoo',
+        'petsafe-veterinary-clinic-management',
+        'hospital-management-system',
+      ]}
+    />
+  </div>
+
+  <!-- Skills ************************* -->
+
+  <section id="skills" class:list={[section, 'relative']}>
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <h2 class:list={[h2, 'mb-8']}>{t('Stack', 'Tecnologías')}</h2>
+
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        {
+          skillGroups.map((group) => (
+            <div class:list={[card, 'p-5']}>
+              <div class="flex items-center gap-2 mb-4">
+                <Icon name={group.icon} class="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <h3 class="font-bold text-lg dark:text-slate-200">{group.title}</h3>
+              </div>
+              <ul class="grid grid-cols-3 gap-4">
+                {group.skills.map((skill) => (
+                  <li class="flex flex-col items-center gap-2 text-center">
+                    <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200 dark:ring-slate-600">
+                      <Icon name={skill.icon} class="h-7 w-7 text-blue-600" aria-hidden="true" />
+                    </span>
+                    <span class="text-xs font-medium text-muted dark:text-slate-300">{skill.name}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Certification ************************* -->
+
+  <section id="about" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
+        <div>
+          <h2 class:list={[h2, 'mb-4']}>{t('About', 'Sobre mí')}</h2>
+          <p class="text-lg text-muted dark:text-slate-400 leading-relaxed max-w-prose">
+            {
+              t(
+                'I take systems from idea to production: data model, services and deployment.',
+                'Llevo sistemas de la idea a producción: modelo de datos, servicios y despliegue.'
+              )
+            }
+          </p>
+        </div>
+
+        <div>
+          <h2 class:list={[h2, 'mb-4']}>{t('Certification', 'Certificación')}</h2>
+          <a
+            href={certification.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class:list={[card, 'flex items-center gap-4 p-4 hover:ring-blue-400 dark:hover:ring-blue-500 transition']}
+          >
+            <img
+              src={certification.image}
+              alt={t(`${certification.name} credential`, `Credencial ${certification.name}`)}
+              class="w-28 h-20 object-cover object-top rounded-md ring-1 ring-gray-200 dark:ring-slate-700 bg-white shrink-0"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="min-w-0">
+              <span class="flex items-center gap-1.5 font-bold dark:text-slate-200">
+                <Icon name="tabler:certificate" class="w-5 h-5 text-blue-600 dark:text-blue-400 shrink-0" />
+                {certification.name}
+              </span>
+              <span class="block text-sm text-muted dark:text-slate-400 mt-1">{certification.issued}</span>
+              <span class="inline-flex items-center gap-1 text-sm font-semibold text-blue-700 dark:text-blue-300 mt-2">
+                {t('Verify on AWS', 'Verificar en AWS')}
+                <Icon name="tabler:external-link" class="w-4 h-4" />
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact *********************** -->
+
+  <section id="contact" class:list={[section, 'relative']}>
+    <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <h2 class:list={[h2, 'mb-8']}>{t('Contact me', 'Contáctame')}</h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        {
+          contactLinks.map((c) => (
+            <a
+              href={c.href}
+              target={c.href.startsWith('http') ? '_blank' : undefined}
+              rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              class:list={[card, 'flex items-center gap-3 p-4 hover:ring-blue-400 dark:hover:ring-blue-500 transition']}
+            >
+              <Icon name={c.icon} class="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0" />
+              <span class="min-w-0">
+                <span class="block text-sm font-semibold dark:text-slate-200">{c.label}</span>
+                <span class="block text-sm text-muted dark:text-slate-400 truncate">{c.value}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <Button variant="primary" href="/cv/Josue_Garcia_en.pdf" target="_blank" icon="tabler:download" text={cvText} />
+    </div>
+  </section>
+</Layout>
