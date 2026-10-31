@@ -15,7 +15,7 @@ const { lang = 'en' } = Astro.props;
 const t = (en: string, es: string) => (lang === 'es' ? es : en);
 
 const metadata = {
-  title: t('Software Engineer Portfolio — Josue Garcia', 'Portafolio de Ingeniero de Software — Josue Garcia'),
+  title: t('Full Stack Developer Portfolio — Josue Garcia', 'Portafolio de Desarrollador Full Stack — Josue Garcia'),
   ignoreTitleTemplate: true,
 };
 
@@ -189,13 +189,13 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
       ]}
       sideImage={{ src: '~/assets/images/profile.jpg', alt: 'Josue Garcia' }}
     >
-      <Fragment slot="title">{t('Software Engineer', 'Ingeniero de Software')}</Fragment>
+      <Fragment slot="title">{t('Full Stack Developer', 'Desarrollador Full Stack')}</Fragment>
 
       <Fragment slot="subtitle">
         {
           t(
-            'Software engineer who builds scalable applications: APIs, dashboards, microservice systems and more.',
-            'Ingeniero de software que construye aplicaciones escalables: APIs, dashboards, sistemas de microservicios y más.'
+            'I build scalable applications: APIs, dashboards, microservice systems and more.',
+            'Construyo aplicaciones escalables: APIs, dashboards, sistemas de microservicios y más.'
           )
         }
       </Fragment>
@@ -350,8 +350,8 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
           <p class="text-lg text-muted dark:text-slate-400 leading-relaxed max-w-prose">
             {
               t(
-                'Software engineer focused on scalable applications: REST APIs with clean architecture, databases, CI/CD pipelines and Python automation.',
-                'Ingeniero de software enfocado en aplicaciones escalables: APIs REST con arquitectura limpia, bases de datos, pipelines de CI/CD y automatizaciones con Python.'
+                'Full Stack Developer focused on scalable applications: REST APIs with clean architecture, databases, CI/CD pipelines and Python automation.',
+                'Desarrollador Full Stack enfocado en aplicaciones escalables: APIs REST con arquitectura limpia, bases de datos, pipelines de CI/CD y automatizaciones con Python.'
               )
             }
           </p>
