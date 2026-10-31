@@ -143,6 +143,10 @@ const freelance = {
     ),
   ],
   tags: ['Angular', 'NestJS', 'PostgreSQL', 'Docker', 'WebSockets'],
+  image: {
+    src: '/images/projects/petsafe/login.png',
+    alt: t('Login screen of a veterinary clinic management system', 'Pantalla de inicio de sesión de un sistema de gestión veterinaria'),
+  },
 };
 
 const certification = {
@@ -312,18 +316,30 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
       </div>
 
       <div class:list={[card, 'p-6 md:p-8 mt-6']}>
-        <div class="flex items-center gap-2 mb-1">
-          <Icon name="tabler:briefcase" class="w-5 h-5 text-primary dark:text-blue-400" />
-          <h3 class="font-bold text-xl dark:text-slate-200">{freelance.role}</h3>
-        </div>
-        <p class="text-sm text-muted dark:text-slate-400 mb-5">{freelance.period}</p>
+        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <Icon name="tabler:briefcase" class="w-5 h-5 text-primary dark:text-blue-400" />
+              <h3 class="font-bold text-xl dark:text-slate-200">{freelance.role}</h3>
+            </div>
+            <p class="text-sm text-muted dark:text-slate-400 mb-5">{freelance.period}</p>
 
-        <ul class="space-y-2 text-muted dark:text-slate-400">
-          {freelance.bullets.map((bullet) => <li>{bullet}</li>)}
-        </ul>
+            <ul class="space-y-2 text-muted dark:text-slate-400">
+              {freelance.bullets.map((bullet) => <li>{bullet}</li>)}
+            </ul>
 
-        <div class="flex flex-wrap gap-2 mt-6">
-          {freelance.tags.map((tag) => <span class={chip}>{tag}</span>)}
+            <div class="flex flex-wrap gap-2 mt-6">
+              {freelance.tags.map((tag) => <span class={chip}>{tag}</span>)}
+            </div>
+          </div>
+
+          <img
+            src={freelance.image.src}
+            alt={freelance.image.alt}
+            class="w-full h-56 object-cover object-top rounded-lg ring-1 ring-gray-200 dark:ring-slate-700 bg-white"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
