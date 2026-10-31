@@ -129,6 +129,22 @@ const experience = {
   href: getPermalink('projects/kronhos-ai-assistant', 'post'),
 };
 
+const freelance = {
+  role: t('Freelance Full Stack Developer', 'Desarrollador Full Stack Freelance'),
+  period: t('Jan 2025 – Present', 'Ene 2025 – Actualidad'),
+  bullets: [
+    t(
+      'Developed and deployed full-stack web applications end to end with Angular, NestJS, PostgreSQL and Docker.',
+      'Desarrollé y desplegué aplicaciones web full stack de punta a punta con Angular, NestJS, PostgreSQL y Docker.'
+    ),
+    t(
+      'Built real-time features with WebSockets and JWT authentication, Playwright system tests, and CI/CD with production deployment on a VPS with Nginx, SSL and Cloudflare.',
+      'Construí funciones en tiempo real con WebSockets y autenticación JWT, pruebas de sistema con Playwright, y CI/CD con despliegue en producción en un VPS con Nginx, SSL y Cloudflare.'
+    ),
+  ],
+  tags: ['Angular', 'NestJS', 'PostgreSQL', 'Docker', 'WebSockets'],
+};
+
 const certification = {
   name: 'AWS Certified AI Practitioner',
   issued: t('Issued Sep 2026 · valid until Sep 2029', 'Emitida sep 2026 · vigente hasta sep 2029'),
@@ -294,6 +310,22 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
           </div>
         </div>
       </div>
+
+      <div class:list={[card, 'p-6 md:p-8 mt-6']}>
+        <div class="flex items-center gap-2 mb-1">
+          <Icon name="tabler:briefcase" class="w-5 h-5 text-primary dark:text-blue-400" />
+          <h3 class="font-bold text-xl dark:text-slate-200">{freelance.role}</h3>
+        </div>
+        <p class="text-sm text-muted dark:text-slate-400 mb-5">{freelance.period}</p>
+
+        <ul class="space-y-2 text-muted dark:text-slate-400">
+          {freelance.bullets.map((bullet) => <li>{bullet}</li>)}
+        </ul>
+
+        <div class="flex flex-wrap gap-2 mt-6">
+          {freelance.tags.map((tag) => <span class={chip}>{tag}</span>)}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -307,7 +339,6 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
       postIds={[
         'vehicle-monitoring-plate-recognition',
         'iron-zone-gym-management-odoo',
-        'petsafe-veterinary-clinic-management',
         'hospital-management-system',
       ]}
     />

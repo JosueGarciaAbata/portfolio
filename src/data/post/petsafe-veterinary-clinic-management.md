@@ -1,5 +1,6 @@
 ---
 publishDate: 2026-06-15T10:00:00Z
+draft: true
 title: PetSafe — Veterinary Clinic Management
 excerpt: A full-stack platform to run a veterinary clinic end to end — owners and pets, appointments, a live queue, medical encounters, vaccinations and adoptions — built with NestJS and Angular.
 image: ~/assets/images/projects/petsafe.png
@@ -108,8 +109,3 @@ migrations and seeding, JWT authentication, WebSockets for real-time queue and n
 email and an OpenAPI specification. The frontend is Angular with Angular Material and Tailwind CSS,
 covered by Playwright system tests. Everything is containerized with Docker and delivered to a VPS
 through a CI/CD pipeline.
-
-## Links
-
-- **Backend:** [github.com/STRATIUM-UTA/PetSafe-Back](https://github.com/STRATIUM-UTA/PetSafe-Back)
-- **Frontend:** [github.com/STRATIUM-UTA/PetSafe-Front](https://github.com/STRATIUM-UTA/PetSafe-Front)
