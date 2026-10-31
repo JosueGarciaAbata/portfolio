@@ -189,18 +189,20 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
       ]}
       sideImage={{ src: '~/assets/images/profile.jpg', alt: 'Josue Garcia' }}
     >
-      <Fragment slot="title">{t('Full Stack Developer', 'Desarrollador Full Stack')}</Fragment>
+      <Fragment slot="title">
+        {t('Full Stack Developer', 'Desarrollador Full Stack')}
+        <span class="mt-2 block text-lg font-normal tracking-normal opacity-60">
+          {t('Software Engineer', 'Ingeniero de Software')}
+        </span>
+      </Fragment>
 
       <Fragment slot="subtitle">
         {
           t(
-            'I build scalable applications: APIs, dashboards, microservice systems and more.',
-            'Construyo aplicaciones escalables: APIs, dashboards, sistemas de microservicios y más.'
+            'I build scalable applications, APIs, dashboards, microservice systems and more.',
+            'Construyo aplicaciones escalables, APIs, dashboards, sistemas de microservicios y más.'
           )
         }
-        <span class="mt-3 block text-base opacity-70">
-          {t('Software Engineer · Universidad Técnica de Ambato', 'Ingeniero de Software · Universidad Técnica de Ambato')}
-        </span>
       </Fragment>
 
       <Fragment slot="content">
