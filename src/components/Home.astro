@@ -149,12 +149,24 @@ const freelance = {
   },
 };
 
-const certification = {
-  name: 'AWS Certified AI Practitioner',
-  issued: t('Issued Sep 2026 · valid until Sep 2029', 'Emitida sep 2026 · vigente hasta sep 2029'),
-  image: '/images/certifications/aws-ai-practitioner.png',
-  href: 'https://cp.certmetrics.com/amazon/en/public/verify/credential/D8A08634715D4AAC8046DC7B2128784B',
-};
+const certifications = [
+  {
+    name: 'AWS Certified AI Practitioner',
+    issued: t('Issued Sep 2026 · valid until Sep 2029', 'Emitida sep 2026 · vigente hasta sep 2029'),
+    image: '/images/certifications/aws-ai-practitioner.png',
+    fit: 'object-cover object-top',
+    cta: t('Verify on AWS', 'Verificar en AWS'),
+    href: 'https://cp.certmetrics.com/amazon/en/public/verify/credential/D8A08634715D4AAC8046DC7B2128784B',
+  },
+  {
+    name: 'EF SET English · B2 (Upper Intermediate)',
+    issued: t('Score 54/100 · Nov 2026', 'Puntaje 54/100 · nov 2026'),
+    image: '/images/certifications/efset-b2.svg',
+    fit: 'object-contain p-1',
+    cta: t('Verify on EF SET', 'Verificar en EF SET'),
+    href: 'https://cert.efset.org/es/SXoScf',
+  },
+];
 
 const contactLinks = [
   { label: 'Email', value: 'josuegarcab2@gmail.com', href: 'mailto:josuegarcab2@gmail.com', icon: 'tabler:mail' },
@@ -411,31 +423,37 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
 
         <div>
           <h2 class:list={[h2, 'mb-4']}>{t('Certification', 'Certificación')}</h2>
-          <a
-            href={certification.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class:list={[card, 'flex items-center gap-4 p-4 hover:ring-primary dark:hover:ring-blue-500 transition']}
-          >
-            <img
-              src={certification.image}
-              alt={t(`${certification.name} credential`, `Credencial ${certification.name}`)}
-              class="w-28 h-20 object-cover object-top rounded-md ring-1 ring-gray-200 dark:ring-slate-700 bg-white shrink-0"
-              loading="lazy"
-              decoding="async"
-            />
-            <span class="min-w-0">
-              <span class="flex items-center gap-1.5 font-bold dark:text-slate-200">
-                <Icon name="tabler:certificate" class="w-5 h-5 text-primary dark:text-blue-400 shrink-0" />
-                {certification.name}
+          <div class="flex flex-col gap-3">
+            {
+              certifications.map((c) => (
+            <a
+              href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class:list={[card, 'flex items-center gap-4 p-4 hover:ring-primary dark:hover:ring-blue-500 transition']}
+            >
+              <img
+                src={c.image}
+                alt={t(`${c.name} credential`, `Credencial ${c.name}`)}
+                class:list={['w-28 h-20 rounded-md', c.fit, ' ring-1 ring-gray-200 dark:ring-slate-700 bg-white shrink-0']}
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="min-w-0">
+                <span class="flex items-center gap-1.5 font-bold dark:text-slate-200">
+                  <Icon name="tabler:certificate" class="w-5 h-5 text-primary dark:text-blue-400 shrink-0" />
+                  {c.name}
+                </span>
+                <span class="block text-sm text-muted dark:text-slate-400 mt-1">{c.issued}</span>
+                <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-blue-300 mt-2">
+                  {c.cta}
+                  <Icon name="tabler:external-link" class="w-4 h-4" />
+                </span>
               </span>
-              <span class="block text-sm text-muted dark:text-slate-400 mt-1">{certification.issued}</span>
-              <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-blue-300 mt-2">
-                {t('Verify on AWS', 'Verificar en AWS')}
-                <Icon name="tabler:external-link" class="w-4 h-4" />
-              </span>
-            </span>
-          </a>
+            </a>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
