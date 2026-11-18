@@ -1,0 +1,558 @@
+---
+// Editorial look + light motion for the home page: big type, italic serif accents,
+// stacked sections, tech marquee and scroll-driven reveals. CSS-first so it stays light.
+---
+
+<style is:global>
+  @font-face {
+    font-family: 'Gloock';
+    src: url('/fonts/Gloock-Regular.woff2') format('woff2');
+    font-display: swap;
+  }
+
+  /* Text selection: soft blue instead of the template's lavender blocks. */
+  main:has(#home) ::selection {
+    background: rgb(1 97 239 / 0.22);
+  }
+
+  /* ---- Type system ----------------------------------------------------- */
+  .grad-i,
+  main:has(#home) h2 em {
+    font-family: 'Gloock', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    padding-right: 0.12em;
+    background: linear-gradient(100deg, var(--aw-color-text-heading) 5%, var(--aw-color-primary) 95%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--aw-color-primary);
+  }
+  main:has(#home) h2 {
+    font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+  }
+  main:has(#home) h2.ed-h2-xl {
+    font-size: clamp(3rem, 10vw, 9rem);
+  }
+  .hero-title {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.18em;
+    font-size: clamp(3rem, 8.5vw, 7.5rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.95;
+    margin: 0.15em 0 0.1em;
+    color: var(--aw-color-text-heading);
+  }
+  .hero-title .ln {
+    padding-right: 0.12em;
+  }
+  .hero-statement {
+    font-size: clamp(1.5rem, 3.6vw, 3.1rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    max-width: 22ch;
+    color: var(--aw-color-text-heading);
+  }
+  main:has(#home) h2.hero-role {
+    font-size: clamp(1.7rem, 3.8vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--aw-color-text-heading);
+  }
+  .hero-role-i {
+    margin-top: 0.15em;
+    font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+    line-height: 1.1;
+  }
+  .hero-role-i .grad-i {
+    padding-right: 0.15em;
+  }
+  .hero-sub {
+    margin-top: 1.25rem;
+    max-width: 48rem;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.4;
+    color: var(--aw-color-text-muted);
+  }
+  /* Photo melts into the page: no frame, edges fade out. */
+  .hero-photo {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 70%, transparent);
+    -webkit-mask-composite: source-in;
+    mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 70%, transparent);
+    mask-composite: intersect;
+    filter: brightness(0.92) contrast(1.05) saturate(1.05);
+  }
+  .ed-glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(55% 45% at 82% 8%, rgb(1 97 239 / 0.18), transparent 70%),
+      radial-gradient(40% 40% at 8% 85%, rgb(109 40 217 / 0.12), transparent 70%);
+  }
+
+  /* ---- Intro animation (pure CSS, runs on load) ------------------------ */
+  .ln {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+  .ln > span {
+    display: inline-block;
+    animation: ln-up 0.95s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  .fade-up {
+    animation: fade-up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+    animation-delay: var(--d, 0ms);
+  }
+  @keyframes ln-up {
+    from {
+      transform: translateY(110%);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ---- Tech marquee ---------------------------------------------------- */
+  .marquee {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee + .marquee {
+    margin-top: 0.75rem;
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    padding: 0.4rem 0;
+    animation: marq 55s linear infinite;
+  }
+  .marquee-rev .marquee-track {
+    animation-direction: reverse;
+    animation-duration: 65s;
+  }
+  .marquee-wrap:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  .tech-tile {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 3.6rem;
+    height: 3.6rem;
+    margin-right: 1rem;
+    border-radius: 1rem;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.06), 0 6px 16px -8px rgb(0 0 0 / 0.35);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  /* One tile at a time pops, spins and glows, like a wave running through the row. */
+  .tech-float {
+    animation: wave 6s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.35s);
+  }
+  @keyframes wave {
+    0%,
+    22%,
+    100% {
+      transform: none;
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 0.06), 0 6px 16px -8px rgb(0 0 0 / 0.35);
+    }
+    8% {
+      transform: translateY(-14px) rotate(-10deg) scale(1.15);
+      box-shadow: 0 0 0 1px rgb(1 97 239 / 0.5), 0 0 28px 2px rgb(1 97 239 / 0.55);
+    }
+    15% {
+      transform: translateY(0) rotate(6deg) scale(1.04);
+    }
+  }
+  @keyframes marq {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ---- Experience ------------------------------------------------------ */
+  .xp-row {
+    display: grid;
+    gap: 1.25rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgb(128 128 128 / 0.28);
+  }
+  .xp-date {
+    margin: -0.5rem 0 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--aw-color-text-muted);
+  }
+  /* Tech tags: the whole pill floats on its own; lifts and spins its icon on hover. */
+  .tag-chip {
+    animation: chip-float 3.6s ease-in-out infinite;
+    transition:
+      transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.3s;
+  }
+  @keyframes chip-float {
+    50% {
+      translate: 0 -6px;
+    }
+  }
+  .tag-chip:nth-child(2) { animation-delay: -0.7s; }
+  .tag-chip:nth-child(3) { animation-delay: -1.4s; }
+  .tag-chip:nth-child(4) { animation-delay: -2.1s; }
+  .tag-chip:nth-child(5) { animation-delay: -2.8s; }
+  .tag-chip svg {
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .tag-chip:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 0 0 1px rgb(1 97 239 / 0.55), 0 10px 22px -10px rgb(1 97 239 / 0.6);
+  }
+  .tag-chip:hover svg {
+    transform: rotate(360deg) scale(1.2);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tag-chip {
+      animation: none;
+    }
+  }
+  .xp-co {
+    color: var(--aw-color-primary);
+  }
+  .xp-role {
+    font-size: clamp(1.8rem, 3.4vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+    color: var(--aw-color-text-heading);
+  }
+  .stat-num {
+    font-size: clamp(2rem, 4.2vw, 3.4rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    background: linear-gradient(100deg, var(--aw-color-text-heading), var(--aw-color-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shot {
+    display: block;
+    overflow: hidden;
+    border-radius: 0.9rem;
+    box-shadow: 0 24px 40px -18px rgb(0 0 0 / 0.45), 0 0 0 1px rgb(128 128 128 / 0.2);
+    transition:
+      transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+      box-shadow 0.45s;
+  }
+  .shot:hover {
+    transform: rotate(0deg) scale(1.025) translateY(-4px);
+  }
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-weight: 700;
+    color: var(--aw-color-primary);
+    transition: gap 0.25s;
+  }
+  .cta-link:hover {
+    gap: 0.7rem;
+  }
+
+  /* ---- Skills ---------------------------------------------------------- */
+  .sk-nav {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgb(128 128 128 / 0.3);
+  }
+  .sk-link {
+    margin-left: -1px;
+    padding: 0.55rem 1rem;
+    border-left: 2px solid transparent;
+    color: var(--aw-color-text-muted);
+    transition:
+      color 0.25s,
+      transform 0.25s,
+      border-color 0.25s;
+  }
+  .sk-link:hover {
+    color: var(--aw-color-text-heading);
+  }
+  .sk-link.is-active {
+    color: var(--aw-color-primary);
+    border-left-color: var(--aw-color-primary);
+    transform: translateX(6px);
+    font-weight: 600;
+  }
+  .sk-title {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: var(--aw-color-text-heading);
+  }
+  .sk-line {
+    height: 1px;
+    margin-bottom: 2rem;
+    background: linear-gradient(90deg, var(--aw-color-primary), transparent);
+    transform-origin: left;
+  }
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .sk-title {
+        animation: sk-title-in linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 60%;
+      }
+      .sk-line {
+        animation: sk-line-in linear both;
+        animation-timeline: view();
+        animation-range: entry 10% entry 70%;
+      }
+      .sk-item {
+        animation: sk-item-in linear both;
+        animation-timeline: view();
+        animation-range: entry calc(15% + var(--i, 0) * 7%) entry calc(55% + var(--i, 0) * 7%);
+      }
+    }
+  }
+  @keyframes sk-title-in {
+    from {
+      opacity: 0;
+      transform: translateX(-80px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes sk-line-in {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes sk-item-in {
+    from {
+      opacity: 0;
+      transform: translateY(36px) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .sk-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .sk-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px var(--aw-color-primary), 0 16px 30px -16px rgb(0 0 0 / 0.4);
+  }
+  /* Category titles: bold sans with a slight slant. */
+  .sk-skew {
+    display: inline-block;
+    transform: skewX(-7deg);
+    transform-origin: left bottom;
+    padding-right: 0.1em;
+  }
+  .sk-group:hover .sk-line {
+    box-shadow: 0 0 14px rgb(1 97 239 / 0.7);
+  }
+  .sk-ico {
+    color: var(--aw-color-primary);
+  }
+  .sk-idx {
+    font-family: 'Gloock', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.42em;
+    letter-spacing: 0;
+    color: var(--aw-color-primary);
+  }
+  .sk-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-weight: 500;
+    transition:
+      transform 0.25s,
+      color 0.25s;
+  }
+  .sk-item:hover {
+    transform: translateX(6px);
+    color: var(--aw-color-primary);
+  }
+  .sk-ico {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: 0.7rem;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.07);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
+  }
+  .sk-ico {
+    animation: ico-float 3.6s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -0.6s);
+  }
+  @keyframes ico-float {
+    50% {
+      translate: 0 -5px;
+    }
+  }
+  .sk-item:hover .sk-ico {
+    transform: rotate(-10deg) scale(1.18);
+    box-shadow: 0 0 0 1px rgb(1 97 239 / 0.6), 0 0 22px rgb(1 97 239 / 0.55);
+  }
+
+  /* ---- About / Contact -------------------------------------------------- */
+  .cert-card {
+    transition:
+      transform 0.3s,
+      box-shadow 0.3s;
+  }
+  .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 0 1px var(--aw-color-primary), 0 16px 30px -16px rgb(0 0 0 / 0.4);
+  }
+  .mail-link {
+    display: inline-block;
+    font-size: clamp(1.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    border-bottom: 3px solid currentColor;
+    color: var(--aw-color-text-heading);
+    transition: color 0.25s;
+  }
+  .mail-link:hover {
+    color: var(--aw-color-primary);
+  }
+
+  /* ---- Stacked sections (home only) ------------------------------------ */
+  @media (prefers-reduced-motion: no-preference) {
+    main:has(#home) > * {
+      position: sticky;
+      top: var(--stack-top, 0px); /* JS: tall sections stick by their bottom edge */
+      background: var(--aw-color-bg-page);
+    }
+    main:has(#home) > *:not(#home) {
+      border-radius: 1.75rem 1.75rem 0 0;
+      box-shadow: 0 -18px 40px -12px rgb(0 0 0 / 0.28);
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* ---- Scroll-driven reveals (Chromium; elsewhere everything just shows) */
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .rv {
+        animation: rv-in linear both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 55%;
+      }
+    }
+  }
+  @keyframes rv-in {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ln > span,
+    .fade-up,
+    .marquee-track {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  function setupStack() {
+    const panels = Array.from(document.querySelectorAll<HTMLElement>('main:has(#home) > *'));
+    if (!panels.length) return;
+    const update = () => {
+      panels.forEach((p) => {
+        p.style.setProperty('--stack-top', `${Math.min(0, window.innerHeight - p.offsetHeight)}px`);
+      });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    panels.forEach((p) => ro.observe(p));
+    window.addEventListener('resize', update);
+    document.addEventListener('astro:before-swap', () => ro.disconnect(), { once: true });
+  }
+
+  function setupSkillSpy() {
+    const links = document.querySelectorAll<HTMLElement>('.sk-link');
+    const groups = document.querySelectorAll<HTMLElement>('.sk-group');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          links.forEach((l) => l.classList.toggle('is-active', l.dataset.sk === e.target.id));
+        });
+      },
+      { rootMargin: '-35% 0px -55% 0px' }
+    );
+    groups.forEach((g) => io.observe(g));
+  }
+
+  function markReveals() {
+    document
+      .querySelectorAll('main:has(#home) h2, .xp-row, article, .cert-card')
+      .forEach((el) => el.classList.add('rv'));
+  }
+
+  document.addEventListener('astro:page-load', () => {
+    markReveals();
+    setupStack();
+  });
+</script>

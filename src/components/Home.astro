@@ -1,7 +1,8 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
+import { Image } from 'astro:assets';
+import profile from '~/assets/images/profile.jpg';
 import ProjectsHighlightedPosts from '~/components/widgets/ProjectsHighlightedPosts.astro';
 import Button from '~/components/ui/Button.astro';
 import { Icon } from 'astro-icon/components';
@@ -19,7 +20,7 @@ const metadata = {
   ignoreTitleTemplate: true,
 };
 
-const heroStack = ['java', 'spring', 'angular', 'react', 'postgresql', 'docker', 'amazonwebservices'];
+const heroStack = ['java', 'spring', 'amazonwebservices', 'docker', 'angular'];
 
 const skillGroups = [
   {
@@ -125,7 +126,13 @@ const experience = {
       alt: t('Kronhos admin panel listing WhatsApp conversations', 'Panel de Kronhos con conversaciones de WhatsApp'),
     },
   ],
-  tags: ['FastAPI', 'Angular', 'PostgreSQL', 'pgvector', 'Azure'],
+  tags: [
+    { name: 'FastAPI', icon: 'devicon:fastapi' },
+    { name: 'Angular', icon: 'devicon:angular' },
+    { name: 'PostgreSQL', icon: 'devicon:postgresql' },
+    { name: 'pgvector', icon: 'tabler:vector-triangle' },
+    { name: 'Azure', icon: 'devicon:azure' },
+  ],
   href: getPermalink('projects/kronhos-ai-assistant', 'post'),
 };
 
@@ -142,7 +149,13 @@ const freelance = {
       'Construí funciones en tiempo real con WebSockets y autenticación JWT, pruebas de sistema con Playwright, y CI/CD con despliegue en producción en un VPS con Nginx, SSL y Cloudflare.'
     ),
   ],
-  tags: ['Angular', 'NestJS', 'PostgreSQL', 'Docker', 'WebSockets'],
+  tags: [
+    { name: 'Angular', icon: 'devicon:angular' },
+    { name: 'NestJS', icon: 'devicon:nestjs' },
+    { name: 'PostgreSQL', icon: 'devicon:postgresql' },
+    { name: 'Docker', icon: 'devicon:docker' },
+    { name: 'WebSockets', icon: 'tabler:plug-connected' },
+  ],
   image: {
     src: '/images/projects/petsafe/login.png',
     alt: t('Login screen of a veterinary clinic management system', 'Pantalla de inicio de sesión de un sistema de gestión veterinaria'),
@@ -198,7 +211,7 @@ const heroLinks = [
 const cvText = t('Download CV', 'Descargar CV');
 
 const chip =
-  'inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium';
+  'tag-chip inline-flex items-center gap-2 rounded-full bg-white dark:bg-white/5 ring-1 ring-gray-200 dark:ring-white/10 text-default dark:text-slate-200 pl-2 pr-3.5 py-1.5 text-sm font-semibold';
 const card = 'rounded-xl bg-white dark:bg-slate-800 ring-1 ring-gray-200 dark:ring-slate-700 shadow-sm';
 const h2 = 'text-3xl md:text-4xl font-bold tracking-tight font-heading';
 const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
@@ -208,152 +221,139 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
   <!-- Hero ******************* -->
 
   <div id="home" class={section}>
-    <Hero
-      actions={[
-        {
-          variant: 'primary',
-          text: cvText,
-          href: '/cv/Josue_Garcia_en.pdf',
-          target: '_blank',
-          icon: 'tabler:download',
-        },
-        { text: t('View projects', 'Ver proyectos'), href: '#projects' },
-      ]}
-      sideImage={{ src: '~/assets/images/profile.jpg', alt: 'Josue Garcia' }}
-    >
-      <Fragment slot="title">
-        {t('Full Stack Developer', 'Desarrollador Full Stack')}
-        <span class="mt-1 block text-lg font-normal italic leading-none tracking-normal opacity-60">
-          {t('Software Engineer', 'Ingeniero de Software')}
-        </span>
-      </Fragment>
+    <section class="relative overflow-hidden">
+      <div class="ed-glow" aria-hidden="true"></div>
+      <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 min-h-[88svh] pt-28 pb-12 grid items-center gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-8">
+          <h1 class="hero-title">
+            <span class="ln" style="--d:80ms"><span>Josué</span></span>
+            <span class="ln" style="--d:200ms"><span><em class="grad-i">García</em></span></span>
+          </h1>
 
-      <Fragment slot="subtitle">
-        {
-          t(
-            '2 years of experience building scalable applications, APIs, dashboards, microservice systems and more.',
-            '2 años de experiencia construyendo aplicaciones escalables, APIs, dashboards, sistemas de microservicios y más.'
-          )
-        }
-      </Fragment>
+          <h2 class="hero-role ln" style="--d:340ms">
+            <span>{t('Full Stack Developer', 'Desarrollador Full Stack')}</span>
+          </h2>
+          <p class="hero-role-i ln" style="--d:420ms"><span><em class="grad-i">{t('Software Engineer', 'Ingeniero de Software')}</em></span></p>
+          <p class="hero-sub ln" style="--d:500ms">
+            <span>
+              {
+                t(
+                  '2 years of experience building scalable applications, APIs, dashboards, microservice systems and more.',
+                  '2 años de experiencia construyendo aplicaciones escalables, APIs, dashboards, sistemas de microservicios y más.'
+                )
+              }
+            </span>
+          </p>
 
-      <Fragment slot="content">
-        <div class="mt-8 flex flex-wrap items-center justify-center md:justify-start gap-3">
-          {
-            heroStack.map((name) => (
-              <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200 dark:ring-slate-600 shadow-sm">
-                <Icon name={`devicon:${name}`} class="h-7 w-7" aria-label={name} />
-              </span>
-            ))
-          }
+          <div class="mt-10 fade-up" style="--d:560ms">
+            <div class="flex flex-wrap items-center gap-3">
+              <Button variant="primary" href="/cv/Josue_Garcia_en.pdf" target="_blank" icon="tabler:download" text={cvText} />
+              <Button text={t('View projects', 'Ver proyectos')} href="#projects" />
+            </div>
+            <div class="mt-6 flex items-center gap-4">
+              {
+                heroLinks.map((l) => (
+                  <a
+                    href={l.href}
+                    target={l.href.startsWith('http') ? '_blank' : undefined}
+                    rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    aria-label={l.label}
+                    title={l.label}
+                    class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-blue-400 hover:-translate-y-0.5 transition"
+                  >
+                    <Icon name={l.icon} class="w-7 h-7" />
+                  </a>
+                ))
+              }
+            </div>
+          </div>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4 fade-up" style="--d:640ms" aria-hidden="true">
+            {
+              heroStack.map((name, i) => (
+                <span class="tech-tile tech-float" style={`--i:${i}`}>
+                  <Icon name={`devicon:${name}`} class="h-7 w-7" />
+                </span>
+              ))
+            }
+          </div>
         </div>
-        <div class="mt-5 flex items-center justify-center md:justify-start gap-4">
-          {
-            heroLinks.map((l) => (
-              <a
-                href={l.href}
-                target={l.href.startsWith('http') ? '_blank' : undefined}
-                rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                aria-label={l.label}
-                title={l.label}
-                class="text-muted dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
-              >
-                <Icon name={l.icon} class="w-7 h-7" />
-              </a>
-            ))
-          }
+
+        <div class="lg:col-span-4 flex justify-center lg:justify-end fade-up" style="--d:300ms">
+          <Image
+            src={profile}
+            alt="Josue Garcia"
+            width={640}
+            height={820}
+            class="hero-photo h-80 w-64 md:h-[28rem] md:w-80 lg:h-[32rem] lg:w-[28rem] object-cover object-[50%_15%]"
+          />
         </div>
-      </Fragment>
-    </Hero>
+      </div>
+    </section>
   </div>
 
   <!-- Experience ************** -->
 
   <section id="experience" class={section}>
-    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
-      <h2 class:list={[h2, 'mb-8']}>{t('Experience', 'Experiencia')}</h2>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-28">
+      <h2 class="ed-h2 mb-14" set:html={t("Where I've <em>worked.</em>", 'Donde he <em>trabajado.</em>')} />
 
-      <div class:list={[card, 'p-6 md:p-8']}>
-        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <Icon name="tabler:briefcase" class="w-5 h-5 text-primary dark:text-blue-400" />
-              <h3 class="font-bold text-xl dark:text-slate-200">{experience.role}, {experience.company}</h3>
-            </div>
-            <p class="text-sm text-muted dark:text-slate-400 mb-5">{experience.period}</p>
+      <article class="xp-row">
+        <div class="xp-body">
+          <h3 class="xp-role">{experience.role} <span class="xp-co">@ {experience.company}</span></h3>
+          <p class="xp-date">{experience.period}</p>
+          <ul class="space-y-2 text-lg text-muted dark:text-slate-300 max-w-3xl">
+            {experience.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
 
-            <ul class="space-y-2 text-muted dark:text-slate-400">
-              {experience.bullets.map((bullet) => <li>{bullet}</li>)}
-            </ul>
-
-            <dl class="grid grid-cols-3 gap-4 mt-6">
-              {
-                experience.stats.map((stat) => (
-                  <div>
-                    <dt class="text-2xl md:text-3xl font-bold text-default dark:text-white">{stat.value}</dt>
-                    <dd class="text-xs md:text-sm text-muted dark:text-slate-400">{stat.label}</dd>
-                  </div>
-                ))
-              }
-            </dl>
-
-            <div class="flex flex-wrap gap-2 mt-6">
-              {experience.tags.map((tag) => <span class={chip}>{tag}</span>)}
-            </div>
-            <a
-              href={experience.href}
-              class="inline-flex items-center gap-1 mt-5 font-semibold text-primary dark:text-blue-300 hover:underline"
-            >
-              {t('See the project', 'Ver el proyecto')}
-              <Icon name="tabler:arrow-right" class="w-4 h-4" />
-            </a>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
+          <dl class="grid grid-cols-3 gap-4 mt-10 max-w-3xl">
             {
-              experience.images.map((image) => (
-                <a href={experience.href} class="block">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    class="w-full h-56 object-cover object-top rounded-lg ring-1 ring-gray-200 dark:ring-slate-700 bg-white"
-                    loading="lazy"
-                    decoding="async"
-                  />
+              experience.stats.map((stat) => (
+                <div>
+                  <dt class="stat-num">{stat.value}</dt>
+                  <dd class="text-xs md:text-sm text-muted dark:text-slate-400">{stat.label}</dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          <div class="flex flex-wrap gap-2 mt-8">
+            {experience.tags.map((tag) => <span class={chip}><Icon name={tag.icon} class="h-5 w-5" />{tag.name}</span>)}
+          </div>
+          <a href={experience.href} class="cta-link mt-6">
+            {t('See the project', 'Ver el proyecto')}
+            <Icon name="tabler:arrow-up-right" class="w-5 h-5" />
+          </a>
+
+          <div class="grid grid-cols-2 gap-4 mt-10">
+            {
+              experience.images.map((image, i) => (
+                <a href={experience.href} class:list={['shot', i === 0 ? '-rotate-1' : 'rotate-1']}>
+                  <img src={image.src} alt={image.alt} class="w-full h-56 md:h-72 object-cover object-top" loading="lazy" decoding="async" />
                 </a>
               ))
             }
           </div>
         </div>
-      </div>
+      </article>
 
-      <div class:list={[card, 'p-6 md:p-8 mt-6']}>
-        <div class="grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div>
-            <div class="flex items-center gap-2 mb-1">
-              <Icon name="tabler:briefcase" class="w-5 h-5 text-primary dark:text-blue-400" />
-              <h3 class="font-bold text-xl dark:text-slate-200">{freelance.role}</h3>
-            </div>
-            <p class="text-sm text-muted dark:text-slate-400 mb-5">{freelance.period}</p>
-
-            <ul class="space-y-2 text-muted dark:text-slate-400">
-              {freelance.bullets.map((bullet) => <li>{bullet}</li>)}
-            </ul>
-
-            <div class="flex flex-wrap gap-2 mt-6">
-              {freelance.tags.map((tag) => <span class={chip}>{tag}</span>)}
+      <article class="xp-row">
+        <div class="xp-body">
+          <h3 class="xp-role">{freelance.role}</h3>
+          <p class="xp-date">{freelance.period}</p>
+          <ul class="space-y-2 text-lg text-muted dark:text-slate-300 max-w-3xl">
+            {freelance.bullets.map((bullet) => <li>{bullet}</li>)}
+          </ul>
+          <div class="flex flex-wrap gap-2 mt-8">
+            {freelance.tags.map((tag) => <span class={chip}><Icon name={tag.icon} class="h-5 w-5" />{tag.name}</span>)}
+          </div>
+          <div class="mt-10 max-w-xl">
+            <div class="shot rotate-1">
+              <img src={freelance.image.src} alt={freelance.image.alt} class="w-full h-56 md:h-72 object-cover object-top" loading="lazy" decoding="async" />
             </div>
           </div>
-
-          <img
-            src={freelance.image.src}
-            alt={freelance.image.alt}
-            class="w-full h-56 object-cover object-top rounded-lg ring-1 ring-gray-200 dark:ring-slate-700 bg-white"
-            loading="lazy"
-            decoding="async"
-          />
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
@@ -362,7 +362,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
   <div id="projects" class={section}>
     <ProjectsHighlightedPosts
       classes={{ container: 'max-w-screen-2xl' }}
-      title={t('Featured projects', 'Proyectos destacados')}
+      title={t('Featured <em>projects.</em>', 'Proyectos <em>destacados.</em>')}
       linkText={t('All projects', 'Todos los proyectos')}
       postIds={[
         'vehicle-monitoring-plate-recognition',
@@ -374,26 +374,23 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
 
   <!-- Skills ************************* -->
 
-  <section id="skills" class:list={[section, 'relative']}>
-    <div class="absolute inset-0 bg-slate-200/60 dark:bg-transparent"></div>
-    <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
-      <h2 class:list={[h2, 'mb-8']}>{t('Stack', 'Tecnologías')}</h2>
+  <section id="skills" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-28">
+      <h2 class="ed-h2 mb-10 md:mb-14" set:html={t('What I <em>use.</em>', 'Lo que <em>uso.</em>')} />
 
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 md:gap-y-14">
         {
           skillGroups.map((group) => (
-            <div class:list={[card, 'p-5']}>
-              <div class="flex items-center gap-2 mb-4">
-                <Icon name={group.icon} class="w-5 h-5 text-primary dark:text-blue-400" />
-                <h3 class="font-bold text-lg dark:text-slate-200">{group.title}</h3>
-              </div>
-              <ul class="grid grid-cols-3 gap-4">
-                {group.skills.map((skill) => (
-                  <li class="flex flex-col items-center gap-2 text-center">
-                    <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-white ring-1 ring-gray-200 dark:ring-slate-600">
-                      <Icon name={skill.icon} class="h-7 w-7 text-primary" aria-hidden="true" />
+            <div class="sk-group">
+              <h3 class="sk-title"><span class="sk-skew">{group.title}</span></h3>
+              <div class="sk-line"></div>
+              <ul class="grid grid-cols-2 sm:grid-cols-3 gap-x-4 gap-y-5">
+                {group.skills.map((skill, i) => (
+                  <li class="sk-item" style={`--i:${i}`}>
+                    <span class="sk-ico">
+                      <Icon name={skill.icon} class="h-7 w-7" aria-hidden="true" />
                     </span>
-                    <span class="text-xs font-medium text-muted dark:text-slate-300">{skill.name}</span>
+                    <span class="text-lg">{skill.name}</span>
                   </li>
                 ))}
               </ul>
@@ -407,73 +404,74 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
   <!-- About + Certification ************************* -->
 
   <section id="about" class={section}>
-    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
-      <div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-        <div>
-          <h2 class:list={[h2, 'mb-4']}>{t('About', 'Sobre mí')}</h2>
-          <p class="text-lg text-muted dark:text-slate-400 leading-relaxed max-w-prose">
-            {
-              t(
-                'Full Stack Developer focused on scalable applications: REST APIs with clean architecture, databases, CI/CD pipelines and Python automation.',
-                'Desarrollador Full Stack enfocado en aplicaciones escalables: APIs REST con arquitectura limpia, bases de datos, pipelines de CI/CD y automatizaciones con Python.'
-              )
-            }
-          </p>
-        </div>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-28">
+      <h2 class="ed-h2 mb-8" set:html={t('About <em>me.</em>', 'Sobre <em>mí.</em>')} />
+      <p class="text-xl md:text-2xl text-muted dark:text-slate-300 leading-relaxed max-w-3xl">
+        {
+          t(
+            'Full Stack Developer focused on scalable applications: REST APIs with clean architecture, databases, CI/CD pipelines and Python automation.',
+            'Desarrollador Full Stack enfocado en aplicaciones escalables: APIs REST con arquitectura limpia, bases de datos, pipelines de CI/CD y automatizaciones con Python.'
+          )
+        }
+      </p>
+    </div>
+  </section>
 
-        <div>
-          <h2 class:list={[h2, 'mb-4']}>{t('Certifications', 'Certificaciones')}</h2>
-          <div class="flex flex-col gap-3">
-            {
-              certifications.map((c) => (
+  <!-- Certifications ************************* -->
+
+  <section id="certifications" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-28">
+      <h2 class="ed-h2 mb-10 md:mb-14" set:html={t('My <em>certifications.</em>', 'Mis <em>certificaciones.</em>')} />
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {
+          certifications.map((c) => (
             <a
               href={c.href}
               target="_blank"
               rel="noopener noreferrer"
-              class:list={[card, 'flex items-center gap-4 p-4 hover:ring-primary dark:hover:ring-blue-500 transition']}
+              class:list={[card, 'cert-card flex flex-col overflow-hidden transition']}
             >
               <img
                 src={c.image}
                 alt={t(`${c.name} credential`, `Credencial ${c.name}`)}
-                class:list={['w-28 h-20 rounded-md', c.fit, ' ring-1 ring-gray-200 dark:ring-slate-700 bg-white shrink-0']}
+                class:list={['w-full h-44', c.fit, 'bg-white']}
                 loading="lazy"
                 decoding="async"
               />
-              <span class="min-w-0">
-                <span class="flex items-center gap-1.5 font-bold dark:text-slate-200">
+              <span class="flex flex-1 flex-col p-5">
+                <span class="flex items-center gap-1.5 text-lg font-bold dark:text-slate-200">
                   <Icon name="tabler:certificate" class="w-5 h-5 text-primary dark:text-blue-400 shrink-0" />
                   {c.name}
                 </span>
                 <span class="block text-sm text-muted dark:text-slate-400 mt-1">{c.issued}</span>
-                <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-blue-300 mt-2">
+                <span class="inline-flex items-center gap-1 text-sm font-semibold text-primary dark:text-blue-300 mt-auto pt-4">
                   {c.cta}
                   <Icon name="tabler:external-link" class="w-4 h-4" />
                 </span>
               </span>
             </a>
-              ))
-            }
-          </div>
-        </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- Contact *********************** -->
 
-  <section id="contact" class:list={[section, 'relative']}>
-    <div class="absolute inset-0 bg-slate-200/60 dark:bg-transparent"></div>
-    <div class="relative max-w-screen-2xl mx-auto px-4 md:px-6 py-12 md:py-16">
-      <h2 class:list={[h2, 'mb-8']}>{t('Contact me', 'Contáctame')}</h2>
+  <section id="contact" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-20 md:py-32">
+      <h2 class="ed-h2 ed-h2-xl mb-10" set:html={t("Let's build <em>together.</em>", 'Construyamos <em>juntos.</em>')} />
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+      <a href="mailto:josuegarcab2@gmail.com" class="mail-link">josuegarcab2@gmail.com</a>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
         {
           contactLinks.map((c) => (
             <a
               href={c.href}
               target={c.href.startsWith('http') ? '_blank' : undefined}
               rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-              class:list={[card, 'flex items-center gap-3 p-4 hover:ring-primary dark:hover:ring-blue-500 transition']}
+              class:list={[card, 'cert-card flex items-center gap-3 p-4 transition']}
             >
               <Icon name={c.icon} class="w-6 h-6 text-primary dark:text-blue-400 shrink-0" />
               <span class="min-w-0">
