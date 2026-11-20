@@ -197,6 +197,7 @@ const timelineItems = [
     ),
     tags: freelance.tags,
     href: getPermalink('projects/petsafe-veterinary-clinic-management', 'post'),
+    linkLabel: t('See an example', 'Ver un ejemplo'),
     h: 215,
   },
   {
@@ -433,7 +434,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
                       )}
                       {item.href && (
                         <a href={item.href} class="cta-link mt-3 text-sm">
-                          {t('See the project', 'Ver el proyecto')}
+                          {item.linkLabel ?? t('See the project', 'Ver el proyecto')}
                           <Icon name="tabler:arrow-up-right" class="w-4 h-4" />
                         </a>
                       )}
