@@ -209,6 +209,7 @@ const heroLinks = [
 ];
 
 const cvText = t('Download CV', 'Descargar CV');
+const cvHref = t('/cv/Josue_Garcia_en.pdf', '/cv/Josue_Garcia_es.pdf');
 
 const chip =
   'tag-chip inline-flex items-center gap-2 rounded-full bg-white dark:bg-white/5 ring-1 ring-gray-200 dark:ring-white/10 text-default dark:text-slate-200 pl-2 pr-3.5 py-1.5 text-sm font-semibold';
@@ -247,7 +248,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
 
           <div class="mt-10 fade-up" style="--d:560ms">
             <div class="flex flex-wrap items-center gap-3">
-              <Button variant="primary" href="/cv/Josue_Garcia_en.pdf" target="_blank" icon="tabler:download" text={cvText} />
+              <Button variant="primary" href={cvHref} target="_blank" icon="tabler:download" text={cvText} />
               <Button text={t('View projects', 'Ver proyectos')} href="#projects" />
             </div>
             <div class="mt-6 flex items-center gap-4">
@@ -483,7 +484,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
         }
       </div>
 
-      <Button variant="primary" href="/cv/Josue_Garcia_en.pdf" target="_blank" icon="tabler:download" text={cvText} />
+      <Button variant="primary" href={cvHref} target="_blank" icon="tabler:download" text={cvText} />
     </div>
   </section>
 </Layout>
