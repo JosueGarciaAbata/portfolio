@@ -4,6 +4,7 @@ title: Creative Portfolio Platform
 excerpt: A web platform where users publish and discover creative portfolios, built from scratch with PHP, MySQL and vanilla JavaScript, HTML and CSS.
 image: ~/assets/images/projects/web-fundamentals.svg
 category: Projects
+draft: true
 tags:
   - PHP
   - MySQL

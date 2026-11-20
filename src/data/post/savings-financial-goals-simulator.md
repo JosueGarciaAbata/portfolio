@@ -4,6 +4,7 @@ title: Savings & Financial Goals Simulator
 excerpt: A full-stack Laravel and React app to plan savings goals, log contributions and track progress, designed and shipped end to end in a single overnight competition sprint.
 image: ~/assets/images/projects/savings-goals.svg
 category: Projects
+draft: true
 tags:
   - Laravel
   - React

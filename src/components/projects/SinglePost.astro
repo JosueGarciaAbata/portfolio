@@ -41,7 +41,7 @@ const { post, url } = Astro.props;
             post.author && (
               <>
                 {' '}
-                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
+                <span class="mx-2.5 inline-block h-3.5 w-px bg-gray-400 align-middle dark:bg-slate-500" aria-hidden="true"></span><Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
                 <span class="inline-block">{post.author}</span>
               </>
             )
@@ -49,7 +49,7 @@ const { post, url } = Astro.props;
           {
             post.category && (
               <>
-                {post.hideDate ? '' : ' · '}
+                {post.hideDate ? '' : <span class="mx-2.5 inline-block h-3.5 w-px bg-gray-400 align-middle dark:bg-slate-500" aria-hidden="true"></span>}
                 <a class="hover:underline inline-block" href={getPermalink(post.category.slug, 'category')}>
                   {post.category.title}
                 </a>
@@ -59,7 +59,7 @@ const { post, url } = Astro.props;
           {
             post.readingTime && (
               <>
-                &nbsp;· <span>{post.readingTime}</span> min read
+                <span class="mx-2.5 inline-block h-3.5 w-px bg-gray-400 align-middle dark:bg-slate-500" aria-hidden="true"></span><span>{post.readingTime}</span> min read
               </>
             )
           }

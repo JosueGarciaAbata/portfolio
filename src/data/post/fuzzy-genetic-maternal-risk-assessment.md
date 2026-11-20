@@ -4,6 +4,7 @@ title: Fuzzy-Genetic Maternal Risk Assessment
 excerpt: Explainable clinical decision-support system that classifies maternal risk into three levels using a Mamdani fuzzy engine whose rule base is learned automatically with a genetic algorithm.
 image: ~/assets/images/projects/maternal.png
 category: Projects
+draft: true
 tags:
   - Python
   - FastAPI

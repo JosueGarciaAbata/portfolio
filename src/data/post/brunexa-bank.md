@@ -3,6 +3,7 @@ publishDate: 2026-09-28T10:00:00Z
 title: Brunexa Bank — Online Banking
 excerpt: An online bank where customers sign up with identity verification powered by AWS Textract and Rekognition, deployed on AWS with Terraform.
 category: Projects
+image: ~/assets/images/projects/brunexa.png
 tags:
   - Java
   - Spring Boot

@@ -4,6 +4,7 @@ title: Asset Maintenance Management System
 excerpt: A full-stack Laravel and React platform to manage physical assets and their maintenance, built by a team working under Scrum.
 image: ~/assets/images/projects/agile-asset.svg
 category: Projects
+draft: true
 tags:
   - Laravel
   - PHP

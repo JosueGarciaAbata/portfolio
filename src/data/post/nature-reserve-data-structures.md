@@ -4,6 +4,7 @@ title: Nature Reserve Manager
 excerpt: A Java application to manage a nature reserve, built on a generic linked list written from scratch with its own iterator and a criteria-based search abstraction.
 image: ~/assets/images/projects/data-structures.svg
 category: Projects
+draft: true
 tags:
   - Java
   - Data Structures

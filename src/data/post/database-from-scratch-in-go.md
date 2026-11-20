@@ -4,6 +4,7 @@ hideDate: true
 title: A Database From Scratch in Go
 excerpt: A learning project to understand data structures and how a database stores and finds information, by building a small one from scratch in Go.
 category: Projects
+draft: true
 tags:
   - Go
   - Data Structures

@@ -4,6 +4,7 @@ title: Digital Image Processing Pipeline
 excerpt: An interactive desktop app that walks the full image processing pipeline, from a raw photo to detected regions, with every filter built from scratch instead of handed to a library.
 image: ~/assets/images/projects/image-processing.png
 category: Projects
+draft: true
 tags:
   - Python
   - Computer Vision
