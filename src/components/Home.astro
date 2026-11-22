@@ -111,11 +111,6 @@ const experience = {
       'Añadí un pipeline RAG (pgvector) y un orquestador de agentes conectado a WhatsApp.'
     ),
   ],
-  stats: [
-    { value: '0%', label: t('HTTP errors under load', 'errores HTTP bajo carga') },
-    { value: '2.31 s', label: t('p95 latency at 10 users', 'latencia p95 con 10 usuarios') },
-    { value: '632', label: t('requests load-tested (k6)', 'peticiones probadas (k6)') },
-  ],
   images: [
     {
       src: '/images/projects/kronhos/assistant.png',
@@ -162,69 +157,75 @@ const freelance = {
   },
 };
 
-const chipSm =
-  'inline-flex items-center gap-1.5 rounded-full bg-gray-100 dark:bg-white/5 ring-1 ring-gray-200 dark:ring-white/10 px-2.5 py-1 text-xs font-semibold text-default dark:text-slate-200';
-
-// Newest first: the snake starts at the top with the latest and ends at the bottom with the oldest.
-const timelineItems = [
+// Newest first.
+const jobs = [
   {
-    kind: 'milestone',
-    title: 'AWS Certified AI Practitioner',
-    period: t('Sep 2026', 'Sep 2026'),
-    text: t('Certified in AI services on AWS.', 'Certificado en servicios de IA en AWS.'),
-    h: 130,
-  },
-  {
-    kind: 'job',
-    title: experience.role,
-    company: experience.company,
+    name: experience.company,
+    role: experience.role,
     period: experience.period,
-    text: t(
-      'A multi-tenant RAG support assistant on a web chat and WhatsApp, deployed on Azure with CI/CD.',
-      'Un asistente de soporte RAG multi-tenant en chat web y WhatsApp, desplegado en Azure con CI/CD.'
-    ),
+    headline: t('An AI support assistant with RAG.', 'Un asistente de soporte con IA y RAG.'),
+    bullets: [
+      {
+        lead: t('AI support platform.', 'Plataforma de soporte con IA.'),
+        text: t(
+          'Built a multi-tenant platform with FastAPI, Angular and PostgreSQL, deployed on Azure with CI/CD.',
+          'Construí una plataforma multi-tenant con FastAPI, Angular y PostgreSQL, desplegada en Azure con CI/CD.'
+        ),
+      },
+      {
+        lead: t('RAG and agents.', 'RAG y agentes.'),
+        text: t(
+          'Added a RAG pipeline (pgvector) and an agent orchestrator connected to WhatsApp.',
+          'Añadí un pipeline RAG (pgvector) y un orquestador de agentes conectado a WhatsApp.'
+        ),
+      },
+      {
+        lead: t('Load testing.', 'Pruebas de carga.'),
+        text: t(
+          'Load-tested the chat API with k6 at 10 virtual users (632 requests, p95 of 2.31 s).',
+          'Probé la API de chat con k6 a 10 usuarios virtuales (632 peticiones, p95 de 2,31 s).'
+        ),
+      },
+    ],
+    image: experience.images[1],
     tags: experience.tags,
     href: experience.href,
-    h: 215,
+    linkLabel: t('See the project', 'Ver el proyecto'),
   },
   {
-    kind: 'job',
-    title: freelance.role,
+    name: 'Freelance',
+    role: t('Full Stack Developer', 'Desarrollador Full Stack'),
     period: freelance.period,
-    text: t(
-      'Full-stack web applications end to end, with real-time features, Playwright tests and CI/CD to a VPS.',
-      'Aplicaciones web full stack de punta a punta, con funciones en tiempo real, pruebas con Playwright y CI/CD a un VPS.'
-    ),
+    headline: t('Full-stack web apps, end to end.', 'Aplicaciones web full stack, de punta a punta.'),
+    bullets: [
+      {
+        lead: t('Full stack delivery.', 'Desarrollo full stack.'),
+        text: t(
+          'Developed and deployed web applications with Angular, NestJS, PostgreSQL and Docker.',
+          'Desarrollé y desplegué aplicaciones web con Angular, NestJS, PostgreSQL y Docker.'
+        ),
+      },
+      {
+        lead: t('Real time.', 'Tiempo real.'),
+        text: t(
+          'Built real-time features with WebSockets and JWT authentication.',
+          'Construí funciones en tiempo real con WebSockets y autenticación JWT.'
+        ),
+      },
+      {
+        lead: t('Testing and deployment.', 'Pruebas y despliegue.'),
+        text: t(
+          'Playwright system tests, and CI/CD with production deployment on a VPS with Nginx, SSL and Cloudflare.',
+          'Pruebas de sistema con Playwright, y CI/CD con despliegue en producción en un VPS con Nginx, SSL y Cloudflare.'
+        ),
+      },
+    ],
+    image: freelance.image,
     tags: freelance.tags,
     href: getPermalink('projects/petsafe-veterinary-clinic-management', 'post'),
     linkLabel: t('See an example', 'Ver un ejemplo'),
-    h: 215,
-  },
-  {
-    kind: 'milestone',
-    title: t('B.Eng. in Software Engineering', 'Ingeniería en Software'),
-    period: t('Dec 2022 – Jun 2027', 'Dic 2022 – Jun 2027'),
-    text: 'Universidad Técnica de Ambato',
-    h: 130,
   },
 ];
-
-const snakeX = [44, 56];
-let snakeAcc = 0;
-const snakeNodes = timelineItems.map((item, i) => {
-  const y = snakeAcc + item.h / 2;
-  snakeAcc += item.h;
-  return { ...item, y, x: snakeX[i % 2] };
-});
-const snakeHeight = snakeAcc;
-let snakePath = `M ${snakeNodes[0].x} 0 L ${snakeNodes[0].x} ${snakeNodes[0].y}`;
-for (let i = 1; i < snakeNodes.length; i++) {
-  const a = snakeNodes[i - 1];
-  const b = snakeNodes[i];
-  const m = (b.y - a.y) / 2;
-  snakePath += ` C ${a.x} ${a.y + m} ${b.x} ${b.y - m} ${b.x} ${b.y}`;
-}
-snakePath += ` L ${snakeNodes[snakeNodes.length - 1].x} ${snakeHeight}`;
 
 const certifications = [
   {
@@ -363,88 +364,57 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
     <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-20">
       <h2 class="ed-h2 mb-10 md:mb-12" set:html={t("Where I've <em>worked.</em>", 'Donde he <em>trabajado.</em>')} />
 
-      <div class="relative mx-auto max-w-5xl lg:h-[var(--snake-h)]" style={`--snake-h:${snakeHeight}px`}>
-        <div class="pointer-events-none absolute left-1/2 top-1/2 hidden h-[460px] w-[460px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-3xl lg:block" aria-hidden="true"></div>
-
-        <div class="snake-clip absolute inset-0 hidden lg:block" aria-hidden="true">
-          <svg class="absolute inset-0 h-full w-full opacity-60 blur-[7px]" viewBox={`0 0 100 ${snakeHeight}`} preserveAspectRatio="none">
-            <path d={snakePath} fill="none" stroke="#3b82f6" stroke-width="7" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
-          </svg>
-          <svg class="absolute inset-0 h-full w-full" viewBox={`0 0 100 ${snakeHeight}`} preserveAspectRatio="none">
-            <defs>
-              <linearGradient id="snake-gradient" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#60a5fa"></stop>
-                <stop offset="0.55" stop-color="#3b82f6"></stop>
-                <stop offset="1" stop-color="#8b5cf6" stop-opacity="0.5"></stop>
-              </linearGradient>
-            </defs>
-            <path d={snakePath} fill="none" stroke="url(#snake-gradient)" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
-          </svg>
-        </div>
-
-        <ol class="relative ml-2 border-l border-slate-300 dark:border-slate-700 lg:ml-0 lg:border-0">
-          {
-            snakeNodes.map((item, i) => (
-              <Fragment>
-                <span
-                  class:list={[
-                    'absolute z-10 hidden -translate-x-1/2 -translate-y-1/2 rounded-full lg:block',
-                    item.kind === 'job'
-                      ? 'h-5 w-5 bg-blue-500 ring-[6px] ring-blue-500/25'
-                      : 'h-3.5 w-3.5 bg-slate-400 ring-4 ring-slate-400/20',
-                  ]}
-                  style={`left:${item.x}%;top:${item.y}px`}
-                >
-                  {item.kind === 'job' && (
-                    <span class="absolute inset-0 animate-ping rounded-full bg-blue-400/60 motion-reduce:hidden" />
-                  )}
-                </span>
-                <li
-                  class="relative pb-8 pl-8 lg:absolute lg:left-[var(--left)] lg:top-[var(--top)] lg:w-[40%] lg:-translate-y-1/2 lg:p-0"
-                  style={`--top:${item.y}px;--left:${i % 2 === 0 ? 0 : 60}%`}
-                >
-                  <span class="absolute -left-[7px] top-2 h-3.5 w-3.5 rounded-full bg-blue-500 lg:hidden" />
-                  <span
-                    class:list={[
-                      'absolute top-1/2 hidden h-px w-[10%] lg:block',
-                      i % 2 === 0
-                        ? 'left-full bg-gradient-to-r from-blue-500/10 to-blue-500/70'
-                        : 'right-full bg-gradient-to-l from-blue-500/10 to-blue-500/70',
-                    ]}
+      <div>
+        {
+          jobs.map((job) => (
+            <article class="grid gap-8 border-t border-slate-300 py-10 first:border-t-0 first:pt-0 dark:border-slate-700 lg:grid-cols-[1fr_440px] lg:gap-16">
+              <div>
+                <h3 class="text-4xl font-bold tracking-tight text-default dark:text-slate-100 [text-shadow:0_6px_36px_rgb(59_130_246/0.32)] dark:[text-shadow:0_0_42px_rgb(59_130_246/0.45)] md:text-5xl">{job.name}</h3>
+                <p class="mt-3 text-xl font-semibold text-default dark:text-slate-100">{job.role}</p>
+                <p class="mt-8 bg-gradient-to-r from-slate-900 via-blue-700 to-blue-500 bg-clip-text text-2xl font-semibold leading-tight text-transparent dark:from-white dark:via-blue-200 dark:to-blue-400 md:text-3xl" set:html={job.headline} />
+                <ul class="mt-6 space-y-4 text-muted dark:text-slate-300">
+                  {job.bullets.map((b) => (
+                    <li class="flex gap-3">
+                      <span class="mt-2.5 h-1 w-1 flex-none rounded-full bg-slate-400" />
+                      <span>
+                        <strong class="font-semibold text-default dark:text-slate-100">{b.lead}</strong> {b.text}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                {job.href && (
+                  <a href={job.href} class="cta-link group mt-6 text-base !font-semibold !text-blue-500 dark:!text-blue-400 [text-shadow:0_0_18px_rgb(59_130_246/0.3)] dark:[text-shadow:0_0_20px_rgb(59_130_246/0.55)]">
+                    <span class="bg-gradient-to-r from-blue-400 to-violet-500 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-[background-size] duration-300 group-hover:bg-[length:100%_2px]">{job.linkLabel}</span>
+                    <Icon name="tabler:arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1" />
+                  </a>
+                )}
+              </div>
+              <div class="lg:text-right">
+                <p class="whitespace-nowrap text-xl font-semibold text-default dark:text-slate-100 md:text-2xl">{job.period}</p>
+                <p class="mt-8 text-left text-sm font-semibold text-default dark:text-slate-100 lg:mt-10">
+                  {t('Stack used', 'Stack usado')}
+                </p>
+                <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 text-left text-sm text-default dark:text-slate-200">
+                  {job.tags.map((tag) => (
+                    <li class="flex items-center gap-2">
+                      <Icon name={tag.icon} class="h-5 w-5 flex-none" />
+                      {tag.name}
+                    </li>
+                  ))}
+                </ul>
+                <div class="relative mt-8 text-left">
+                  <div class="pointer-events-none absolute -inset-8 -z-10 bg-[radial-gradient(closest-side,rgb(59_130_246/0.18),transparent)]" aria-hidden="true" />
+                  <img
+                    src={job.image.src}
+                    alt={job.image.alt}
+                    loading="lazy"
+                    class="w-full rounded-2xl shadow-xl ring-1 ring-slate-300 dark:ring-white/10"
                   />
-                  <div class="snake-reveal" data-side={i % 2 === 0 ? 'left' : 'right'}>
-                    <div
-                      class={`${card} p-5 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 hover:ring-blue-400/50`}
-                    >
-                      <p class="text-sm text-muted dark:text-slate-400">{item.period}</p>
-                      <h3 class="mt-1 text-xl font-bold leading-snug text-default dark:text-slate-100">
-                        {item.title}
-                        {item.company && <span class="text-blue-600 dark:text-blue-400"> @ {item.company}</span>}
-                      </h3>
-                      <p class="mt-2 text-sm text-muted dark:text-slate-300">{item.text}</p>
-                      {item.tags && (
-                        <div class="mt-3 flex flex-wrap gap-1.5">
-                          {item.tags.map((tag) => (
-                            <span class={chipSm}>
-                              <Icon name={tag.icon} class="h-4 w-4" />
-                              {tag.name}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                      {item.href && (
-                        <a href={item.href} class="cta-link mt-3 text-sm">
-                          {item.linkLabel ?? t('See the project', 'Ver el proyecto')}
-                          <Icon name="tabler:arrow-up-right" class="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </li>
-              </Fragment>
-            ))
-          }
-        </ol>
+                </div>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -607,56 +577,3 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
     </div>
   </section>
 </Layout>
-
-<style is:global>
-  /* The timeline is taller than the viewport, so it scrolls normally instead of being stacked under the next section. */
-  main:has(#home) > #experience {
-    position: relative;
-    top: auto;
-  }
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) {
-      .snake-clip {
-        animation: snake-draw linear both;
-        animation-timeline: view();
-        animation-range: entry 15% cover 55%;
-      }
-      .snake-reveal {
-        animation: snake-in-left linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 65%;
-      }
-      .snake-reveal[data-side='right'] {
-        animation-name: snake-in-right;
-      }
-    }
-  }
-  @keyframes snake-draw {
-    from {
-      clip-path: inset(0 0 100% 0);
-    }
-    to {
-      clip-path: inset(0 0 0 0);
-    }
-  }
-  @keyframes snake-in-left {
-    from {
-      opacity: 0;
-      transform: translateX(-32px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-  @keyframes snake-in-right {
-    from {
-      opacity: 0;
-      transform: translateX(32px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
-  }
-</style>

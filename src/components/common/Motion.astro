@@ -483,6 +483,56 @@
     }
   }
 
+  /* ---- Starry background (home only, light and dark) --------------------
+     Static gradients only: no filters, no animation, so scrolling stays light. */
+  main:has(#home) {
+    --sk-1: rgb(37 99 235 / 0.85);
+    --sk-2: rgb(71 85 105 / 0.75);
+    --sk-3: rgb(79 70 229 / 0.7);
+    --sk-glow-a: rgb(59 130 246 / 0.16);
+    --sk-glow-b: rgb(139 92 246 / 0.12);
+  }
+  .dark main:has(#home) {
+    --sk-1: #fff;
+    --sk-2: #bfdbfe;
+    --sk-3: #93c5fd;
+    --sk-glow-a: rgb(59 130 246 / 0.12);
+    --sk-glow-b: rgb(139 92 246 / 0.1);
+  }
+  main:has(#home) > * {
+    background-color: var(--aw-color-bg-page);
+    background-image:
+      radial-gradient(1.8px 1.8px at 40px 60px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 130px 220px, var(--sk-2), transparent),
+      radial-gradient(1.8px 1.8px at 260px 120px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 380px 310px, var(--sk-3), transparent),
+      radial-gradient(2.2px 2.2px at 480px 80px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 570px 410px, var(--sk-2), transparent),
+      radial-gradient(1.6px 1.6px at 90px 480px, var(--sk-3), transparent),
+      radial-gradient(1.2px 1.2px at 330px 470px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 70px 40px, var(--sk-2), transparent),
+      radial-gradient(900px circle at 95% 0%, var(--sk-glow-a), transparent 60%),
+      radial-gradient(900px circle at 0% 100%, var(--sk-glow-b), transparent 60%);
+    background-size:
+      620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px,
+      430px 390px, 100% 100%, 100% 100%;
+    background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat, no-repeat;
+  }
+  /* The hero keeps its own glow, so it only gets the stars. */
+  main:has(#home) > #home {
+    background-image:
+      radial-gradient(1.8px 1.8px at 40px 60px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 130px 220px, var(--sk-2), transparent),
+      radial-gradient(1.8px 1.8px at 260px 120px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 380px 310px, var(--sk-3), transparent),
+      radial-gradient(2.2px 2.2px at 480px 80px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 570px 410px, var(--sk-2), transparent),
+      radial-gradient(1.6px 1.6px at 90px 480px, var(--sk-3), transparent),
+      radial-gradient(1.2px 1.2px at 330px 470px, var(--sk-1), transparent),
+      radial-gradient(1.2px 1.2px at 70px 40px, var(--sk-2), transparent);
+    background-size: 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 620px 540px, 430px 390px;
+  }
+
   /* ---- Scroll-driven reveals (Chromium; elsewhere everything just shows) */
   @supports (animation-timeline: view()) {
     @media (prefers-reduced-motion: no-preference) {
