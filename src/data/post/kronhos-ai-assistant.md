@@ -41,7 +41,7 @@ tickets and spreadsheets. Finding them takes time, and each person answers a lit
 
 An assistant that answers in plain Spanish from the company's own documents, tickets, FAQs and spreadsheets,
 on a web chat and on WhatsApp. Each company is a tenant with its own agents, knowledge and WhatsApp number.
-It is used by 4 support agents.
+It answers customers directly and takes repetitive questions off a support team of 4.
 
 <figure class="not-prose m-0 my-8">
   <img src="/images/projects/kronhos/architecture.png" alt="System architecture of the Kronhos AI support platform in five layers" class="w-full rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-slate-700 bg-white" loading="lazy" decoding="async" />

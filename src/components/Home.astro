@@ -163,7 +163,7 @@ const jobs = [
     name: experience.company,
     role: experience.role,
     period: experience.period,
-    headline: t('An AI support assistant with RAG.', 'Un asistente de soporte con IA y RAG.'),
+    headline: t('An AI support assistant with <em>RAG</em>', 'Un asistente de soporte con IA y <em>RAG</em>'),
     bullets: [
       {
         lead: t('AI support platform.', 'Plataforma de soporte con IA.'),
@@ -196,7 +196,7 @@ const jobs = [
     name: 'Freelance',
     role: t('Full Stack Developer', 'Desarrollador Full Stack'),
     period: freelance.period,
-    headline: t('Full-stack web apps, end to end.', 'Aplicaciones web full stack, de punta a punta.'),
+    headline: t('Full-stack <em>web apps</em>', 'Aplicaciones <em>web full stack</em>'),
     bullets: [
       {
         lead: t('Full stack delivery.', 'Desarrollo full stack.'),
@@ -369,15 +369,13 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
           jobs.map((job) => (
             <article class="grid gap-8 border-t border-slate-300 py-10 first:border-t-0 first:pt-0 dark:border-slate-700 lg:grid-cols-[1fr_440px] lg:gap-16">
               <div>
-                <h3 class="text-4xl font-bold tracking-tight text-default dark:text-slate-100 [text-shadow:0_6px_36px_rgb(59_130_246/0.32)] dark:[text-shadow:0_0_42px_rgb(59_130_246/0.45)] md:text-5xl">{job.name}</h3>
-                <p class="mt-3 text-xl font-semibold text-default dark:text-slate-100">{job.role}</p>
-                <p class="mt-8 bg-gradient-to-r from-slate-900 via-blue-700 to-blue-500 bg-clip-text text-2xl font-semibold leading-tight text-transparent dark:from-white dark:via-blue-200 dark:to-blue-400 md:text-3xl" set:html={job.headline} />
+                <h3 class="text-3xl font-bold tracking-tight text-default dark:text-slate-100 [text-shadow:0_6px_36px_rgb(59_130_246/0.32)] dark:[text-shadow:0_0_42px_rgb(59_130_246/0.45)] md:text-4xl">{job.role} <span class="font-normal text-slate-400 dark:text-slate-500">@</span> {job.name}</h3>
+                                <div class="relative mt-8"><div class="relative"><p class="bg-gradient-to-r from-slate-900 via-blue-700 to-blue-500 bg-clip-text text-2xl font-bold leading-tight tracking-tighter text-transparent dark:from-white dark:via-blue-200 dark:to-blue-400 md:text-3xl [&_em]:pr-2 [&_em]:font-normal [&_em]:italic [&_em]:[font-family:Gloock,Georgia,serif]" set:html={job.headline} />
                 <ul class="mt-6 space-y-4 text-muted dark:text-slate-300">
                   {job.bullets.map((b) => (
                     <li class="flex gap-3">
-                      <span class="mt-2.5 h-1 w-1 flex-none rounded-full bg-slate-400" />
-                      <span>
-                        <strong class="font-semibold text-default dark:text-slate-100">{b.lead}</strong> {b.text}
+                                            <span>
+                        {b.lead} {b.text}
                       </span>
                     </li>
                   ))}
@@ -388,16 +386,17 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
                     <Icon name="tabler:arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1" />
                   </a>
                 )}
+                </div></div>
               </div>
               <div class="lg:text-right">
-                <p class="whitespace-nowrap text-xl font-semibold text-default dark:text-slate-100 md:text-2xl">{job.period}</p>
-                <p class="mt-8 text-left text-sm font-semibold text-default dark:text-slate-100 lg:mt-10">
+                <p class="whitespace-nowrap text-base font-medium tracking-wide text-muted dark:text-slate-400">{job.period}</p>
+                <p class="mt-8 text-left text-base font-medium text-default dark:text-slate-100 [text-shadow:0_4px_24px_rgb(59_130_246/0.2)] dark:[text-shadow:0_0_24px_rgb(59_130_246/0.35)] lg:mt-10">
                   {t('Stack used', 'Stack usado')}
                 </p>
-                <ul class="mt-3 grid grid-cols-2 gap-x-4 gap-y-3 text-left text-sm text-default dark:text-slate-200">
-                  {job.tags.map((tag) => (
-                    <li class="flex items-center gap-2">
-                      <Icon name={tag.icon} class="h-5 w-5 flex-none" />
+                <ul class="mt-6 grid grid-cols-2 gap-x-4 gap-y-4 text-left text-sm text-default dark:text-slate-200">
+                  {job.tags.map((tag, i) => (
+                    <li class="stack-item group flex cursor-default items-center gap-2 transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-300" style={`animation-delay:${i * 0.45}s`}>
+                      <Icon name={tag.icon} class="h-5 w-5 flex-none transition duration-500 group-hover:scale-125 group-hover:drop-shadow-[0_0_8px_rgb(96_165_250/0.8)]" />
                       {tag.name}
                     </li>
                   ))}
@@ -577,3 +576,16 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
     </div>
   </section>
 </Layout>
+
+<style>
+  .stack-item {
+    animation: stack-hop 4.5s ease-in-out infinite;
+  }
+  @keyframes stack-hop {
+    0%, 12%, 100% { transform: translateY(0); }
+    6% { transform: translateY(-4px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .stack-item { animation: none; }
+  }
+</style>
