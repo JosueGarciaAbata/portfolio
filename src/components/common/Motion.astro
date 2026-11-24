@@ -36,7 +36,7 @@
     color: var(--aw-color-primary);
   }
   main:has(#home) h2 {
-    font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+    font-size: clamp(2.4rem, 5vw, 4rem);
     font-weight: 800;
     letter-spacing: -0.045em;
     line-height: 1;
@@ -48,7 +48,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0 0.18em;
-    font-size: clamp(3rem, 8.5vw, 7.5rem);
+    font-size: clamp(2.8rem, 6.5vw, 5.2rem);
     font-weight: 800;
     letter-spacing: -0.05em;
     line-height: 0.95;
@@ -67,7 +67,7 @@
     color: var(--aw-color-text-heading);
   }
   main:has(#home) h2.hero-role {
-    font-size: clamp(1.7rem, 3.8vw, 3.2rem);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
     font-weight: 800;
     letter-spacing: -0.045em;
     line-height: 1;
@@ -75,7 +75,7 @@
   }
   .hero-role-i {
     margin-top: 0.15em;
-    font-size: clamp(1.3rem, 2.6vw, 2.2rem);
+    font-size: clamp(1.2rem, 2vw, 1.7rem);
     line-height: 1.1;
   }
   .hero-role-i .grad-i {
@@ -84,17 +84,12 @@
   .hero-sub {
     margin-top: 1.25rem;
     max-width: 48rem;
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
     line-height: 1.4;
     color: var(--aw-color-text-muted);
   }
-  /* Photo melts into the page: no frame, edges fade out. */
   .hero-photo {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 70%, transparent);
-    -webkit-mask-composite: source-in;
-    mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent), linear-gradient(to bottom, transparent, #000 14%, #000 70%, transparent);
-    mask-composite: intersect;
-    filter: brightness(0.92) contrast(1.05) saturate(1.05);
+    border-radius: 1.5rem;
   }
   .ed-glow {
     position: absolute;
@@ -469,15 +464,6 @@
 
   /* ---- Stacked sections (home only) ------------------------------------ */
   @media (prefers-reduced-motion: no-preference) {
-    main:has(#home) > * {
-      position: sticky;
-      top: var(--stack-top, 0px); /* JS: tall sections stick by their bottom edge */
-      background: var(--aw-color-bg-page);
-    }
-    main:has(#home) > *:not(#home) {
-      border-radius: 1.75rem 1.75rem 0 0;
-      box-shadow: 0 -18px 40px -12px rgb(0 0 0 / 0.28);
-    }
     html {
       scroll-behavior: smooth;
     }
