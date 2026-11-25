@@ -97,6 +97,11 @@ const skillGroups = [
   },
 ];
 
+const softSkills = [
+  { name: t('Communication', 'Comunicación'), icon: 'tabler:message-circle', text: t('I explain technical decisions clearly and ask before assuming.', 'Explico decisiones técnicas con claridad y pregunto antes de suponer.') },
+  { name: t('Teamwork', 'Trabajo en equipo'), icon: 'tabler:users-group', text: t('I collaborate through Git and code reviews, following what the team agrees on.', 'Colaboro con Git y revisiones de código, cumpliendo con lo acordado en el equipo.') },
+];
+
 const experience = {
   role: t('Software Developer', 'Desarrollador de Software'),
   company: 'Kronhos',
@@ -475,7 +480,7 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
 
   <section id="skills" class={section}>
     <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-28">
-      <h2 class="ed-h2 mb-10 md:mb-14" set:html={t('What I <em>use.</em>', 'Lo que <em>uso.</em>')} />
+      <h2 class="ed-h2 mb-10 md:mb-14" set:html={t('Technical <em>skills.</em>', 'Habilidades <em>técnicas.</em>')} />
 
       <div class="grid md:grid-cols-2 gap-x-16 gap-y-12 md:gap-y-14">
         {
@@ -497,6 +502,29 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <!-- Soft skills ******************** -->
+
+  <section id="soft-skills" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-20">
+      <h2 class="ed-h2 mb-10 md:mb-14" set:html={t('Soft <em>skills.</em>', 'Habilidades <em>blandas.</em>')} />
+      <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-6 max-w-4xl">
+        {
+          softSkills.map((skill, i) => (
+            <li class="sk-item" style={`--i:${i}`}>
+              <span class="sk-ico">
+                <Icon name={skill.icon} class="h-7 w-7" aria-hidden="true" />
+              </span>
+              <span>
+                <span class="block text-lg">{skill.name}</span>
+                <span class="block text-sm font-normal text-muted dark:text-slate-400">{skill.text}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 
