@@ -1,7 +1,7 @@
 ---
 publishDate: 2026-06-14T10:00:00Z
 title: License Plate Recognition and Vehicle Monitoring
-excerpt: A computer vision system that reads license plates, estimates speed and turns it into a suggested, explainable penalty for an operator to review.
+excerpt: A computer vision system that reads license plates, estimates vehicle speed for an operator to review.
 image: ~/assets/images/projects/plate-ocr.png
 category: Projects
 tags:
@@ -11,8 +11,8 @@ tags:
   - PyTorch
   - FastAPI
 metadata:
-  title: License Plate Recognition and Vehicle Monitoring with Fuzzy Decision Support
-  description: A computer vision pipeline that detects plates with YOLOv11, segments characters with U-Net, estimates speed with virtual lines and suggests graded penalties with a Mamdani fuzzy engine, integrated into a FastAPI web monitoring application.
+  title: License Plate Recognition and Vehicle Monitoring 
+  description: A computer vision pipeline that detects plates with YOLOv11, segments characters with U-Net, estimates speed with virtual lines, integrated into a FastAPI web monitoring application.
 ---
 
 <div class="not-prose flex flex-wrap gap-2 my-6">
@@ -20,7 +20,6 @@ metadata:
   <span class="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium">YOLOv11</span>
   <span class="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium">U-Net</span>
   <span class="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium">PyTorch</span>
-  <span class="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium">Fuzzy Logic</span>
   <span class="inline-flex items-center rounded-full bg-slate-200 dark:bg-slate-700 text-muted dark:text-slate-300 px-3 py-0.5 text-sm font-medium">FastAPI</span>
 </div>
 
@@ -33,8 +32,7 @@ a person watching and writing things down. It is slow, subjective and leaves no 
 
 One continuous vision pipeline. A detector locates the plate, the characters are segmented and read, and
 the result is validated against the Ecuadorian plate format. Two virtual lines on the frame measure the
-speed, and a fuzzy system turns how far over the limit the car went into a suggested penalty that an
-operator can review.
+speed.
 
 ## What I did
 
@@ -45,8 +43,6 @@ I added the character segmentation with U-Net.
 I post-processed the OCR to discard false characters, such as screws and spurious regions.
 
 I implemented speed estimation with virtual lines.
-
-I built a suggested, interpretable penalty with a Mamdani fuzzy engine.
 
 I integrated the flow into a FastAPI web monitoring application.
 
@@ -69,14 +65,6 @@ I evaluated it on 74 real vehicles.
   <figure class="m-0 md:col-span-2">
     <img src="/images/projects/plate-ocr/cv-pipeline.png" alt="Computer vision process replay: detection, segmentation and per-character recognition of a plate" class="w-full rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-slate-700" loading="lazy" decoding="async" />
     <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-slate-400">Replay of the detection, segmentation and per-character recognition of a plate.</figcaption>
-  </figure>
-  <figure class="m-0">
-    <img src="/images/projects/plate-ocr/event-detail.png" alt="Event detail with plate, speed, risk and suggested sanction" class="w-full rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-slate-700" loading="lazy" decoding="async" />
-    <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-slate-400">Event with plate, speed, risk and suggested penalty.</figcaption>
-  </figure>
-  <figure class="m-0">
-    <img src="/images/projects/plate-ocr/fuzzy-mamdani.png" alt="Mamdani fuzzy inference view explaining the suggested penalty" class="w-full rounded-lg shadow-lg ring-1 ring-gray-200 dark:ring-slate-700" loading="lazy" decoding="async" />
-    <figcaption class="mt-2 text-sm text-center text-gray-500 dark:text-slate-400">Fuzzy inference explaining the suggested penalty.</figcaption>
   </figure>
 </div>
 
