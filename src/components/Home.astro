@@ -227,6 +227,18 @@ const jobs = [
   },
 ];
 
+// Newest first.
+const publications = [
+  {
+    title: t(
+      'Vehicle monitoring system for cars using license plate character recognition and penalty assessment with Mamdani fuzzy logic',
+      'Sistema de monitoreo vehicular para automóviles mediante reconocimiento de caracteres en placas y evaluación de sanciones con lógica difusa Mamdani'
+    ),
+    venue: 'ArksisJournal, Vol. 1(2), 2026',
+    href: 'https://doi.org/10.63957/arksis.v1i2.0011',
+  },
+];
+
 const certifications = [
   {
     name: 'AWS Certified AI Practitioner',
@@ -433,6 +445,31 @@ const section = 'scroll-mt-[96px] md:scroll-mt-[88px]';
       ]}
     />
   </div>
+
+  <!-- Publications ******************* -->
+
+  <section id="publications" class={section}>
+    <div class="max-w-screen-2xl mx-auto px-4 md:px-6 py-16 md:py-20">
+      <h2 class="ed-h2 mb-10 md:mb-14" set:html={t('<em>Publications.</em>', '<em>Publicaciones.</em>')} />
+      {
+        publications.map((p) => (
+          <article class="max-w-4xl border-t border-slate-300 py-10 first:border-t-0 first:pt-0 dark:border-slate-700">
+            <h3 class="text-2xl font-bold leading-tight tracking-tight text-default dark:text-slate-100 md:text-3xl">{p.title}</h3>
+            <p class="mt-3 text-muted dark:text-slate-400">{p.venue}</p>
+            <a
+              href={p.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="cta-link group mt-6 text-base !font-semibold !text-blue-500 dark:!text-blue-400 [text-shadow:0_0_18px_rgb(59_130_246/0.3)] dark:[text-shadow:0_0_20px_rgb(59_130_246/0.55)]"
+            >
+              <span class="bg-gradient-to-r from-blue-400 to-violet-500 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-[background-size] duration-300 group-hover:bg-[length:100%_2px]">{t('Read article (in Spanish)', 'Leer artículo')}</span>
+              <Icon name="tabler:arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-1" />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
 
   <!-- Skills ************************* -->
 
